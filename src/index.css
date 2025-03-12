@@ -5,44 +5,44 @@
 
 @layer base {
   :root {
-    --background: 220 20% 97%;
-    --foreground: 225 25% 15%;
+    --background: 220 10% 10%;
+    --foreground: 0 0% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 225 25% 15%;
+    --card: 220 10% 15%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 225 25% 15%;
+    --popover: 220 10% 15%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 220 60% 45%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 70% 50%;
+    --primary-foreground: 0 0% 95%;
 
-    --secondary: 220 15% 94%;
-    --secondary-foreground: 225 25% 15%;
+    --secondary: 220 10% 20%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 220 15% 94%;
-    --muted-foreground: 225 10% 40%;
+    --muted: 220 10% 20%;
+    --muted-foreground: 220 10% 60%;
 
-    --accent: 220 15% 94%;
-    --accent-foreground: 225 25% 15%;
+    --accent: 220 10% 20%;
+    --accent-foreground: 0 0% 95%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 220 20% 85%;
-    --input: 220 20% 85%;
-    --ring: 220 60% 45%;
+    --border: 220 10% 25%;
+    --input: 220 10% 25%;
+    --ring: 0 70% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    --sidebar-background: 225 30% 15%;
-    --sidebar-foreground: 220 15% 94%;
-    --sidebar-primary: 220 60% 45%;
-    --sidebar-primary-foreground: 220 15% 94%;
-    --sidebar-accent: 225 15% 25%;
-    --sidebar-accent-foreground: 220 15% 94%;
-    --sidebar-border: 225 20% 30%;
-    --sidebar-ring: 220 60% 45%;
+    --sidebar-background: 220 15% 10%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 70% 50%;
+    --sidebar-primary-foreground: 0 0% 95%;
+    --sidebar-accent: 220 10% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 10% 20%;
+    --sidebar-ring: 0 70% 50%;
   }
 
   body {
@@ -52,7 +52,7 @@
 
 @layer components {
   .glass-card {
-    @apply backdrop-blur-md bg-white/70 border border-white/20 shadow-lg;
+    @apply backdrop-blur-md bg-black/70 border border-white/10 shadow-lg;
   }
   
   .page-transition {
@@ -64,7 +64,7 @@
   }
   
   .nav-link {
-    @apply relative px-3 py-2 text-foreground/80 hover:text-foreground transition-colors;
+    @apply relative px-3 py-2 text-foreground/80 hover:text-foreground transition-colors font-bold;
   }
   
   .nav-link::after {
@@ -92,7 +92,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary/40 rounded-full hover:bg-primary/60 transition-colors;
+  @apply bg-primary/60 rounded-full hover:bg-primary/80 transition-colors;
 }
 
 /* Smooth transitions */

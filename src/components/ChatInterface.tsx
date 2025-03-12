@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import MessageBubble, { Message } from './MessageBubble';
@@ -7,18 +8,18 @@ import { generateResponse } from '@/utils/chatUtils';
 const INITIAL_MESSAGES: Message[] = [
   {
     id: '1',
-    content: "Welcome to HERØ. I'm your supportive AI assistant, here to help you better support the women in your life. What would you like to discuss today?",
+    content: "Welcome to HERØ. I'm your no-BS assistant, here to help you navigate women's issues with confidence and strength. What do you want to know?",
     sender: 'bot',
     timestamp: new Date(),
   },
 ];
 
 const SUGGESTION_TOPICS = [
-  "How can I better support during menstruation?",
-  "Understanding postpartum recovery",
-  "Supporting a partner with anxiety",
-  "Communication tips for sensitive topics",
-  "Understanding hormonal changes"
+  "How to deal with emotional situations",
+  "Getting through her mood swings",
+  "Handling relationship conflicts like a boss",
+  "Direct communication strategies that work",
+  "Taking charge during hormonal times"
 ];
 
 const ChatInterface = () => {
@@ -65,7 +66,7 @@ const ChatInterface = () => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Unable to generate a response. Please try again.",
+        description: "Something went wrong. Try again.",
         variant: "destructive",
       });
     } finally {
@@ -112,7 +113,7 @@ const ChatInterface = () => {
       
       {messages.length <= 2 && (
         <div className="px-4 mb-4">
-          <p className="text-sm text-foreground/60 mb-2">Suggested topics:</p>
+          <p className="text-sm text-foreground/60 mb-2">Choose your challenge:</p>
           <div className="flex flex-wrap gap-2">
             {SUGGESTION_TOPICS.map((topic, index) => (
               <button
@@ -133,7 +134,7 @@ const ChatInterface = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Type your message..."
+            placeholder="Type your question..."
             rows={1}
             className="w-full p-3 pr-16 rounded-xl border border-input bg-background/80 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none resize-none"
           />

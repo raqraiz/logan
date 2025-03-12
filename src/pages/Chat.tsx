@@ -18,7 +18,7 @@ const Chat = () => {
           >
             <h1 className="text-3xl font-bold mb-2">HERØ Chat</h1>
             <p className="text-foreground/70">
-              Ask questions and get guidance on how to better support the women in your life.
+              Get straight answers and practical advice on how to handle women's issues like a boss.
             </p>
           </motion.div>
           

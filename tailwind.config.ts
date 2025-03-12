@@ -65,13 +65,13 @@ export default {
 				},
 				support: {
 					light: '#1A1F2C30',
-					DEFAULT: '#0EA5E9',
-					dark: '#0284C7',
+					DEFAULT: '#ea384c',
+					dark: '#c9162c',
 				},
 				hero: {
 					light: '#1A1F2C',
-					DEFAULT: '#403E43',
-					dark: '#221F26',
+					DEFAULT: '#0f0f11',
+					dark: '#080809',
 				},
 			},
 			borderRadius: {
