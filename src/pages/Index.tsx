@@ -24,10 +24,12 @@ const Index = () => {
                 className="w-24 h-24 rounded-full bg-hero-light/10 flex items-center justify-center mx-auto mb-8"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                  <path d="m15 9-6 6" />
+                  <path d="m9 9 6 6" />
                 </svg>
               </motion.div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-hero-dark to-primary bg-clip-text text-transparent tracking-wider">HERØ</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-primary bg-clip-text text-transparent tracking-wider">HERØ</h1>
               <p className="text-xl text-foreground/70 max-w-3xl mx-auto mb-8">
                 Your AI companion for men looking to better understand and support the women in their lives.
               </p>

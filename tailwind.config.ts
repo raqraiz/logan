@@ -65,8 +65,8 @@ export default {
 				},
 				support: {
 					light: '#1A1F2C30',
-					DEFAULT: '#ea384c',
-					dark: '#c9162c',
+					DEFAULT: '#3183ff',
+					dark: '#1967de',
 				},
 				hero: {
 					light: '#1A1F2C',
