@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import MessageBubble, { Message } from './MessageBubble';
-import { useToast } from "@/components/ui/toast";
+import { useToast } from "@/hooks/use-toast";
 import { generateResponse } from '@/utils/chatUtils';
 
 const INITIAL_MESSAGES: Message[] = [
