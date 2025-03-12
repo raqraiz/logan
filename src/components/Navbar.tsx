@@ -28,7 +28,7 @@ const Navbar = () => {
           to="/" 
           className="text-xl font-medium text-primary flex items-center space-x-2 transition-transform hover:scale-[1.02] active:scale-[0.98]"
         >
-          <span className="text-2xl">Wingman</span>
+          <span className="text-2xl font-bold tracking-wide">HERØ</span>
         </Link>
         
         <nav className="hidden md:flex items-center space-x-8">

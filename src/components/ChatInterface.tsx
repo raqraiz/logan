@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import MessageBubble, { Message } from './MessageBubble';
@@ -8,7 +7,7 @@ import { generateResponse } from '@/utils/chatUtils';
 const INITIAL_MESSAGES: Message[] = [
   {
     id: '1',
-    content: "Hello! I'm your supportive wingman, here to help you better support the women in your life. What would you like to discuss today?",
+    content: "Welcome to HERØ. I'm your supportive AI assistant, here to help you better support the women in your life. What would you like to discuss today?",
     sender: 'bot',
     timestamp: new Date(),
   },
