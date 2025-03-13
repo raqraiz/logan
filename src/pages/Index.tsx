@@ -31,7 +31,7 @@ const Index = () => {
               </motion.div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-primary bg-clip-text text-transparent tracking-wider">HERØ</h1>
               <p className="text-xl text-foreground/70 max-w-3xl mx-auto mb-8">
-                Your AI companion for men looking to better understand and support the women in their lives.
+                Your wingman for handling women's stuff like a boss. No BS, just straight talk.
               </p>
               <Link 
                 to="/chat" 
@@ -60,9 +60,9 @@ const Index = () => {
                     <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-medium mb-2">Empathetic Understanding</h3>
+                <h3 className="text-xl font-medium mb-2">Cut Through the BS</h3>
                 <p className="text-foreground/70 leading-relaxed">
-                  Gain insights into women's health experiences, emotional needs, and effective ways to provide meaningful support.
+                  Get straight talk on women's health without the fluff. Know what they're going through and how to handle it like a pro.
                 </p>
               </motion.div>
               
@@ -78,9 +78,9 @@ const Index = () => {
                     <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-medium mb-2">Improved Communication</h3>
+                <h3 className="text-xl font-medium mb-2">Boss-Level Communication</h3>
                 <p className="text-foreground/70 leading-relaxed">
-                  Learn how to navigate sensitive conversations with empathy, active listening, and appropriate responses.
+                  Learn how to talk to her without the drama. Get your point across and shut down arguments before they start.
                 </p>
               </motion.div>
               
@@ -96,9 +96,9 @@ const Index = () => {
                     <path d="m7 10 5 5 5-5" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-medium mb-2">Practical Support</h3>
+                <h3 className="text-xl font-medium mb-2">Take Charge Tactics</h3>
                 <p className="text-foreground/70 leading-relaxed">
-                  Discover actionable ways to provide support during different life stages, health challenges, and emotional situations.
+                  Get actionable moves to handle different situations - from mood swings to major life changes. Be the man with a plan.
                 </p>
               </motion.div>
             </div>
@@ -109,7 +109,7 @@ const Index = () => {
               transition={{ duration: 0.5, delay: 0.8 }}
               className="text-center"
             >
-              <h2 className="text-2xl md:text-3xl font-medium mb-6">Ready to strengthen your support skills?</h2>
+              <h2 className="text-2xl md:text-3xl font-medium mb-6">Ready to level up your game?</h2>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link 
                   to="/chat" 

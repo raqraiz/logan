@@ -6,8 +6,8 @@ import SupportCard from '@/components/SupportCard';
 const Resources = () => {
   const resources = [
     {
-      title: "Understanding Menstrual Health",
-      description: "Learn about the menstrual cycle, common challenges, and how to provide comfort and support.",
+      title: "The Real Deal on Periods",
+      description: "Learn what's actually happening during her cycle, how to spot the signs, and what to do (and not do) when it's that time of the month.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 21a9 9 0 0 0 9-9 9 9 0 0 0-9-9 9 9 0 0 0-9 9 9 9 0 0 0 9 9Z" />
@@ -17,8 +17,8 @@ const Resources = () => {
       )
     },
     {
-      title: "Pregnancy and Postpartum",
-      description: "Guidance for supporting partners through pregnancy, childbirth, and the postpartum period.",
+      title: "The Baby Playbook",
+      description: "How to be the MVP during pregnancy and after the baby comes. Step up your game when she needs you most.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M19 13v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6" />
@@ -28,8 +28,8 @@ const Resources = () => {
       )
     },
     {
-      title: "Mental and Emotional Health",
-      description: "Understanding anxiety, depression, and stress in women, and how to provide meaningful emotional support.",
+      title: "Handling Her Head Game",
+      description: "When she's stressing or freaking out, here's how to keep your cool and bring her back to reality without losing your mind.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z" />
@@ -37,8 +37,8 @@ const Resources = () => {
       )
     },
     {
-      title: "Hormonal Changes",
-      description: "Learn about hormonal fluctuations throughout life and their impacts on physical and emotional wellbeing.",
+      title: "Hormone Hacks",
+      description: "The straight facts on why she acts different sometimes and how to deal with it like a champ. Biology isn't an excuse for chaos.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M17 18a5 5 0 0 0-10 0" />
@@ -53,8 +53,8 @@ const Resources = () => {
       )
     },
     {
-      title: "Communication Strategies",
-      description: "Effective techniques for sensitive conversations, active listening, and creating safe spaces for sharing.",
+      title: "Talk Tactics",
+      description: "Cut through the bullshit with straight-up communication that gets results. No mind games, no drama.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v5Z" />
@@ -63,8 +63,8 @@ const Resources = () => {
       )
     },
     {
-      title: "Self-Care for Supporters",
-      description: "How to maintain your own wellbeing while supporting others, including managing stress and setting boundaries.",
+      title: "Keeping Your Edge",
+      description: "How to be there for her without losing yourself. Set boundaries, maintain your priorities, and stay on top of your game.",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
@@ -85,9 +85,9 @@ const Resources = () => {
             transition={{ duration: 0.5 }}
             className="text-center mb-16"
           >
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">Supportive Resources</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Bro Guides</h1>
             <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-              Explore these resources to deepen your understanding and enhance your support skills.
+              Straight-up knowledge to help you crush it when dealing with women's stuff.
             </p>
           </motion.div>
           
@@ -109,9 +109,9 @@ const Resources = () => {
             transition={{ duration: 0.5, delay: 0.8 }}
             className="mt-16 p-8 glass-card rounded-2xl text-center"
           >
-            <h2 className="text-2xl font-medium mb-4">Have more questions?</h2>
+            <h2 className="text-2xl font-medium mb-4">Need specific advice?</h2>
             <p className="text-foreground/70 mb-6">
-              Our AI chatbot is available 24/7 to provide personalized guidance and support.
+              Our AI has your back 24/7 with no-BS answers to your toughest questions.
             </p>
             <a 
               href="/chat" 
