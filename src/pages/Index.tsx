@@ -30,7 +30,7 @@ const Index = () => {
                 </svg>
               </motion.div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-wider">
-                <span className="bg-gradient-to-r from-white via-primary to-support bg-clip-text text-transparent">HERØ</span>
+                <span className="bg-gradient-to-b from-white via-gray-500 to-black bg-clip-text text-transparent">HERØ</span>
               </h1>
               <p className="text-xl text-foreground/70 max-w-3xl mx-auto mb-8">
                 Your wingman for handling women's stuff like a boss. No BS, just straight talk.
