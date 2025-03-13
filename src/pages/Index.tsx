@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -29,7 +28,7 @@ const Index = () => {
                   <path d="m9 9 6 6" />
                 </svg>
               </motion.div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-primary bg-clip-text text-transparent tracking-wider">HERØ</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-support to-primary bg-clip-text text-transparent tracking-wider">HERØ</h1>
               <p className="text-xl text-foreground/70 max-w-3xl mx-auto mb-8">
                 Your wingman for handling women's stuff like a boss. No BS, just straight talk.
               </p>
