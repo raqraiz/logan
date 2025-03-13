@@ -5,44 +5,44 @@
 
 @layer base {
   :root {
-    --background: 220 10% 10%;
+    --background: 0 0% 7%;
     --foreground: 0 0% 95%;
 
-    --card: 220 10% 15%;
+    --card: 0 0% 12%;
     --card-foreground: 0 0% 95%;
 
-    --popover: 220 10% 15%;
+    --popover: 0 0% 12%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 215 70% 50%;
-    --primary-foreground: 0 0% 95%;
+    --primary: 0 0% 90%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 220 10% 20%;
+    --secondary: 0 0% 18%;
     --secondary-foreground: 0 0% 95%;
 
-    --muted: 220 10% 20%;
-    --muted-foreground: 220 10% 60%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 220 10% 20%;
+    --accent: 0 0% 18%;
     --accent-foreground: 0 0% 95%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 10% 25%;
-    --input: 220 10% 25%;
-    --ring: 215 70% 50%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 80%;
 
     --radius: 0.25rem;
 
-    --sidebar-background: 220 15% 10%;
+    --sidebar-background: 0 0% 5%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 215 70% 50%;
-    --sidebar-primary-foreground: 0 0% 95%;
-    --sidebar-accent: 220 10% 15%;
+    --sidebar-primary: 0 0% 90%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 220 10% 20%;
-    --sidebar-ring: 215 70% 50%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 0% 80%;
   }
 
   body {
@@ -69,7 +69,7 @@
   
   .nav-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-white/80 transition-all duration-300;
   }
   
   .nav-link:hover::after {
@@ -92,7 +92,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary/60 rounded-full hover:bg-primary/80 transition-colors;
+  @apply bg-white/40 rounded-full hover:bg-white/60 transition-colors;
 }
 
 /* Smooth transitions */
