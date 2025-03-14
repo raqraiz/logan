@@ -32,7 +32,7 @@ const Navbar = () => {
             <img 
               src="/lovable-uploads/65eefa7a-3e93-401f-92ce-70a91a57cf7c.png" 
               alt="HERØ Logo" 
-              className="w-7 h-7 object-contain"
+              className="w-5 h-5 object-contain" 
             />
           </div>
           <span className="text-2xl font-bold tracking-wider text-alpha-white">HERØ</span>

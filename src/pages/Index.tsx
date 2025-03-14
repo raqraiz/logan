@@ -26,7 +26,7 @@ const Index = () => {
                 <img 
                   src="/lovable-uploads/65eefa7a-3e93-401f-92ce-70a91a57cf7c.png" 
                   alt="HERØ Logo" 
-                  className="w-16 h-16 object-contain"
+                  className="w-10 h-10 object-contain"
                 />
               </motion.div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-wider">
