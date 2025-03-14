@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col page-transition">
+    <div className="min-h-screen flex flex-col page-transition bg-alpha-black">
       <Navbar />
       
       <main className="flex-1 pt-24">
@@ -21,23 +21,23 @@ const Index = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
-                className="w-24 h-24 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-8"
+                className="w-24 h-24 rounded-full bg-alpha-graphite flex items-center justify-center mx-auto mb-8"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-alpha-white">
                   <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
                   <path d="m15 9-6 6" />
                   <path d="m9 9 6 6" />
                 </svg>
               </motion.div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-wider">
-                <span className="bg-gradient-to-b from-white via-gray-500 to-black bg-clip-text text-transparent">HERØ</span>
+                <span className="bg-gradient-to-b from-alpha-white via-alpha-slate to-alpha-black bg-clip-text text-transparent">HERØ</span>
               </h1>
-              <p className="text-xl text-foreground/70 max-w-3xl mx-auto mb-8">
+              <p className="text-xl text-alpha-white/70 max-w-3xl mx-auto mb-8">
                 Your wingman for handling women's stuff like a boss. No BS, just straight talk.
               </p>
               <Link 
                 to="/chat" 
-                className="inline-flex items-center px-6 py-3 rounded-full bg-white text-black hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-medium button-hover"
+                className="action-button"
               >
                 Start Chatting
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
@@ -54,16 +54,16 @@ const Index = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="glass-card rounded-2xl p-8 border-white/5"
+                className="glass-card rounded-2xl p-8 border-alpha-white/5"
               >
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 text-white">
+                <div className="w-12 h-12 rounded-full bg-alpha-graphite flex items-center justify-center mb-4 text-alpha-red">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M7 10v12" />
                     <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-medium mb-2">Cut Through the BS</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="text-xl font-medium mb-2 text-alpha-white">Cut Through the BS</h3>
+                <p className="text-alpha-white/70 leading-relaxed">
                   Get straight talk on women's health without the fluff. Know what they're going through and how to handle it like a pro.
                 </p>
               </motion.div>
@@ -72,16 +72,16 @@ const Index = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="glass-card rounded-2xl p-8 border-white/5"
+                className="glass-card rounded-2xl p-8 border-alpha-white/5"
               >
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 text-white">
+                <div className="w-12 h-12 rounded-full bg-alpha-graphite flex items-center justify-center mb-4 text-alpha-gold">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v5Z" />
                     <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-medium mb-2">Boss-Level Communication</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="text-xl font-medium mb-2 text-alpha-white">Boss-Level Communication</h3>
+                <p className="text-alpha-white/70 leading-relaxed">
                   Learn how to talk to her without the drama. Get your point across and shut down arguments before they start.
                 </p>
               </motion.div>
@@ -90,16 +90,16 @@ const Index = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
-                className="glass-card rounded-2xl p-8 border-white/5"
+                className="glass-card rounded-2xl p-8 border-alpha-white/5"
               >
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 text-white">
+                <div className="w-12 h-12 rounded-full bg-alpha-graphite flex items-center justify-center mb-4 text-alpha-cyan">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
                     <path d="m7 10 5 5 5-5" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-medium mb-2">Take Charge Tactics</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="text-xl font-medium mb-2 text-alpha-white">Take Charge Tactics</h3>
+                <p className="text-alpha-white/70 leading-relaxed">
                   Get actionable moves to handle different situations - from mood swings to major life changes. Be the man with a plan.
                 </p>
               </motion.div>
@@ -111,17 +111,17 @@ const Index = () => {
               transition={{ duration: 0.5, delay: 0.8 }}
               className="text-center"
             >
-              <h2 className="text-2xl md:text-3xl font-medium mb-6">Ready to level up your game?</h2>
+              <h2 className="text-2xl md:text-3xl font-medium mb-6 text-alpha-white">Ready to level up your game?</h2>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link 
                   to="/chat" 
-                  className="px-6 py-3 rounded-full bg-white text-black hover:bg-white/90 shadow-md button-hover"
+                  className="action-button"
                 >
                   Start a Conversation
                 </Link>
                 <Link 
                   to="/resources" 
-                  className="px-6 py-3 rounded-full bg-gray-800 border border-white/10 text-white hover:bg-gray-700 shadow-sm button-hover"
+                  className="secondary-button"
                 >
                   Explore Resources
                 </Link>

@@ -5,44 +5,44 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 95%;
+    --background: 240 10% 3.9%; /* Jet Black */
+    --foreground: 210 40% 98%; /* Frost White */
 
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 95%;
+    --card: 210 9% 13%; /* Deep Graphite */
+    --card-foreground: 210 40% 98%; /* Frost White */
 
-    --popover: 0 0% 12%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 210 9% 13%; /* Deep Graphite */
+    --popover-foreground: 210 40% 98%; /* Frost White */
 
-    --primary: 0 0% 90%;
-    --primary-foreground: 0 0% 5%;
+    --primary: 210 40% 98%; /* Frost White */
+    --primary-foreground: 240 10% 3.9%; /* Jet Black */
 
-    --secondary: 0 0% 18%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 215 13% 26%; /* Dark Slate */
+    --secondary-foreground: 210 40% 98%; /* Frost White */
 
-    --muted: 0 0% 18%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 215 13% 26%; /* Dark Slate */
+    --muted-foreground: 210 20% 80%; /* Lighter Frost White */
 
-    --accent: 0 0% 18%;
-    --accent-foreground: 0 0% 95%;
+    --accent: 350 83% 57%; /* Hero Red */
+    --accent-foreground: 210 40% 98%; /* Frost White */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 350 83% 57%; /* Hero Red */
+    --destructive-foreground: 210 40% 98%; /* Frost White */
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 80%;
+    --border: 215 13% 26%; /* Dark Slate */
+    --input: 215 13% 26%; /* Dark Slate */
+    --ring: 210 40% 96.1%; /* Frost White variant */
 
     --radius: 0.25rem;
 
-    --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 0 0% 90%;
-    --sidebar-primary-foreground: 0 0% 5%;
-    --sidebar-accent: 0 0% 10%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 0 0% 80%;
+    --sidebar-background: 240 10% 3.9%; /* Jet Black */
+    --sidebar-foreground: 210 40% 98%; /* Frost White */
+    --sidebar-primary: 210 40% 98%; /* Frost White */
+    --sidebar-primary-foreground: 240 10% 3.9%; /* Jet Black */
+    --sidebar-accent: 210 9% 13%; /* Deep Graphite */
+    --sidebar-accent-foreground: 210 40% 98%; /* Frost White */
+    --sidebar-border: 215 13% 26%; /* Dark Slate */
+    --sidebar-ring: 210 40% 96.1%; /* Frost White variant */
   }
 
   body {
@@ -52,7 +52,7 @@
 
 @layer components {
   .glass-card {
-    @apply backdrop-blur-md bg-black/70 border border-white/10 shadow-lg;
+    @apply backdrop-blur-md bg-alpha-black/70 border border-alpha-white/10 shadow-lg;
   }
   
   .page-transition {
@@ -69,7 +69,7 @@
   
   .nav-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-white/80 transition-all duration-300;
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-alpha-white/80 transition-all duration-300;
   }
   
   .nav-link:hover::after {
@@ -78,6 +78,26 @@
   
   .nav-link.active::after {
     @apply w-full;
+  }
+
+  .action-button {
+    @apply inline-flex items-center px-6 py-3 rounded-full bg-alpha-red text-alpha-white hover:bg-alpha-red/90 shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-medium button-hover;
+  }
+  
+  .secondary-button {
+    @apply inline-flex items-center px-6 py-3 rounded-full bg-alpha-graphite border border-alpha-white/10 text-alpha-white hover:bg-alpha-slate shadow-sm button-hover;
+  }
+
+  .tech-button {
+    @apply inline-flex items-center px-6 py-3 rounded-full bg-alpha-cyan text-alpha-black hover:bg-alpha-cyan/90 shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-medium button-hover;
+  }
+  
+  .premium-accent {
+    @apply text-alpha-gold;
+  }
+  
+  .tech-accent {
+    @apply text-alpha-cyan;
   }
 }
 
@@ -88,11 +108,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-secondary/50 rounded-full;
+  @apply bg-alpha-graphite rounded-full;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-white/40 rounded-full hover:bg-white/60 transition-colors;
+  @apply bg-alpha-white/40 rounded-full hover:bg-alpha-white/60 transition-colors;
 }
 
 /* Smooth transitions */

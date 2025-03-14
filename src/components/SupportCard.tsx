@@ -16,11 +16,11 @@ const SupportCard = ({ title, description, icon, delay = 0 }: SupportCardProps) 
       transition={{ duration: 0.5, delay: delay * 0.1 }}
       className="glass-card rounded-2xl p-6 hover:shadow-xl transition-all duration-300"
     >
-      <div className="w-12 h-12 rounded-full bg-support-light flex items-center justify-center mb-4 text-support-dark">
+      <div className="w-12 h-12 rounded-full bg-alpha-graphite flex items-center justify-center mb-4 text-alpha-cyan">
         {icon}
       </div>
-      <h3 className="text-xl font-medium mb-2">{title}</h3>
-      <p className="text-foreground/70 leading-relaxed">{description}</p>
+      <h3 className="text-xl font-medium mb-2 text-alpha-white">{title}</h3>
+      <p className="text-alpha-white/70 leading-relaxed">{description}</p>
     </motion.div>
   );
 };

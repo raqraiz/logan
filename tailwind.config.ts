@@ -64,14 +64,25 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				support: {
-					light: '#1A1F2C30',
-					DEFAULT: '#3183ff',
-					dark: '#1967de',
+					light: '#3E4348', // Dark Slate
+					DEFAULT: '#E63946', // Hero Red
+					dark: '#1B6CA8', // Stealth Blue
 				},
 				hero: {
-					light: '#1A1F2C',
-					DEFAULT: '#0f0f11',
-					dark: '#080809',
+					light: '#1C1E22', // Deep Graphite
+					DEFAULT: '#0B0B0D', // Jet Black
+					dark: '#0B0B0D', // Jet Black
+				},
+				// New HERØ Alpha color palette
+				alpha: {
+					black: '#0B0B0D', // Jet Black
+					graphite: '#1C1E22', // Deep Graphite
+					red: '#E63946', // Hero Red
+					cyan: '#00F5D4', // Electric Cyan
+					slate: '#3E4348', // Dark Slate
+					white: '#F5F7FA', // Frost White
+					gold: '#F2A900', // Vibrant Gold
+					blue: '#1B6CA8', // Stealth Blue
 				},
 			},
 			borderRadius: {
