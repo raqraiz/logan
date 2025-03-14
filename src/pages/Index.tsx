@@ -1,7 +1,8 @@
+
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
-import { Shield } from 'lucide-react';
+import { Award } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -21,12 +22,12 @@ const Index = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
-                className="w-24 h-24 rounded-full bg-gradient-to-b from-alpha-white via-alpha-slate to-alpha-black flex items-center justify-center mx-auto mb-8 border-2 border-alpha-white/10 shadow-lg"
+                className="w-24 h-24 rounded-full bg-alpha-graphite flex items-center justify-center mx-auto mb-8 border-2 border-alpha-white/10 shadow-lg"
               >
-                <Shield size={48} className="text-alpha-red" />
+                <Award size={48} className="text-alpha-red" />
               </motion.div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-wider">
-                <span className="bg-gradient-to-b from-alpha-white via-alpha-slate to-alpha-black bg-clip-text text-transparent">HERØ</span>
+                <span className="text-alpha-white">HERØ</span>
               </h1>
               <p className="text-xl text-alpha-white/70 max-w-3xl mx-auto mb-8">
                 Your wingman for handling women's stuff like a boss. No BS, just straight talk.
