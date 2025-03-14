@@ -1,7 +1,7 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
+import { Shield } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -21,13 +21,9 @@ const Index = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
-                className="w-24 h-24 rounded-full bg-alpha-graphite flex items-center justify-center mx-auto mb-8"
+                className="w-24 h-24 rounded-full bg-gradient-to-b from-alpha-white via-alpha-slate to-alpha-black flex items-center justify-center mx-auto mb-8 border-2 border-alpha-white/10 shadow-lg"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-alpha-white">
-                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                  <path d="m15 9-6 6" />
-                  <path d="m9 9 6 6" />
-                </svg>
+                <Shield size={48} className="text-alpha-red" />
               </motion.div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-wider">
                 <span className="bg-gradient-to-b from-alpha-white via-alpha-slate to-alpha-black bg-clip-text text-transparent">HERØ</span>

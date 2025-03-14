@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Shield } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -26,9 +27,12 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link 
           to="/" 
-          className="text-xl font-medium text-primary flex items-center space-x-2 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          className="text-xl font-medium text-primary flex items-center space-x-3 transition-transform hover:scale-[1.02] active:scale-[0.98]"
         >
-          <span className="text-2xl font-bold tracking-wide">HERØ</span>
+          <div className="w-9 h-9 bg-gradient-to-b from-alpha-white via-alpha-slate to-alpha-black rounded-md flex items-center justify-center overflow-hidden">
+            <Shield className="w-5 h-5 text-alpha-red" />
+          </div>
+          <span className="text-2xl font-bold tracking-wider bg-gradient-to-b from-alpha-white via-alpha-slate to-alpha-black bg-clip-text text-transparent">HERØ</span>
         </Link>
         
         <nav className="hidden md:flex items-center space-x-8">
