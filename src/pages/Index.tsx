@@ -1,7 +1,7 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
+import { HeartPulse } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -23,17 +23,13 @@ const Index = () => {
                 transition={{ duration: 1, delay: 0.2 }}
                 className="w-24 h-24 rounded-full bg-alpha-graphite flex items-center justify-center mx-auto mb-8 border-2 border-alpha-white/10 shadow-lg"
               >
-                <img 
-                  src="/lovable-uploads/65eefa7a-3e93-401f-92ce-70a91a57cf7c.png" 
-                  alt="HERØ Logo" 
-                  className="w-10 h-10 object-contain"
-                />
+                <HeartPulse className="w-16 h-16 text-alpha-red" />
               </motion.div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-wider">
-                <span className="text-alpha-white">HERØ</span>
+                <span className="text-alpha-white">LOGAN</span>
               </h1>
               <p className="text-xl text-alpha-white/70 max-w-3xl mx-auto mb-8">
-                Your wingman for handling women's stuff like a boss. No BS, just straight talk.
+                Your wingman for handling men's health like a boss. No BS, just straight talk.
               </p>
               <Link 
                 to="/chat" 
