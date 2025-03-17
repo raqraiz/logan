@@ -1,7 +1,8 @@
+
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
-import { HeartPulse } from 'lucide-react';
+import { Dumbbell } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -23,7 +24,7 @@ const Index = () => {
                 transition={{ duration: 1, delay: 0.2 }}
                 className="w-24 h-24 rounded-full bg-alpha-graphite flex items-center justify-center mx-auto mb-8 border-2 border-alpha-white/10 shadow-lg"
               >
-                <HeartPulse className="w-16 h-16 text-alpha-red" />
+                <Dumbbell className="w-16 h-16 text-alpha-red" />
               </motion.div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-wider">
                 <span className="text-alpha-white">logan</span>

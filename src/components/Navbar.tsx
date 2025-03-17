@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Heart } from 'lucide-react';
+import { Dumbbell } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +30,7 @@ const Navbar = () => {
           className="text-xl font-medium text-primary flex items-center space-x-3 transition-transform hover:scale-[1.02] active:scale-[0.98]"
         >
           <div className="w-9 h-9 bg-alpha-graphite rounded-md flex items-center justify-center overflow-hidden">
-            <Heart className="w-7 h-7 text-alpha-red" />
+            <Dumbbell className="w-7 h-7 text-alpha-red" />
           </div>
           <span className="text-2xl font-bold tracking-wider text-alpha-white">logan</span>
         </Link>
