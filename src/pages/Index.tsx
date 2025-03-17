@@ -26,7 +26,7 @@ const Index = () => {
                 <HeartPulse className="w-16 h-16 text-alpha-red" />
               </motion.div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-wider">
-                <span className="text-alpha-white">LOGAN</span>
+                <span className="text-alpha-white">logan</span>
               </h1>
               <p className="text-xl text-alpha-white/70 max-w-3xl mx-auto mb-8">
                 Your wingman for handling men's health like a boss. No BS, just straight talk.

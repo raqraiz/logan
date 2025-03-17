@@ -32,7 +32,7 @@ const Navbar = () => {
           <div className="w-9 h-9 bg-alpha-graphite rounded-md flex items-center justify-center overflow-hidden">
             <Heart className="w-7 h-7 text-alpha-red" />
           </div>
-          <span className="text-2xl font-bold tracking-wider text-alpha-white">LOGAN</span>
+          <span className="text-2xl font-bold tracking-wider text-alpha-white">logan</span>
         </Link>
         
         <nav className="hidden md:flex items-center space-x-8">
