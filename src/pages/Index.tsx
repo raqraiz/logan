@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -30,7 +29,7 @@ const Index = () => {
                 <span className="text-alpha-white">logan</span>
               </h1>
               <p className="text-xl text-alpha-white/70 max-w-3xl mx-auto mb-8">
-                Your partner's health
+                Your wingman for handling your partner's health like a boss. No BS, just straight talk
               </p>
               <Link 
                 to="/chat" 
