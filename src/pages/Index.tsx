@@ -30,7 +30,7 @@ const Index = () => {
                 <span className="text-alpha-white">logan</span>
               </h1>
               <p className="text-xl text-alpha-white/70 max-w-3xl mx-auto mb-8">
-                Your wingman for handling men's health like a boss. No BS, just straight talk.
+                Your partner's health
               </p>
               <Link 
                 to="/chat" 
