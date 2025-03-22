@@ -1,53 +1,7 @@
 
-// Chat utility for generating responses using OpenAI API
+// Chat utility for generating local responses
 
-export async function generateResponse(input: string, apiKey?: string): Promise<string> {
-  if (!apiKey) {
-    // Fallback to local response if no API key provided
-    return generateLocalResponse(input);
-  }
-
-  try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-          {
-            role: "system",
-            content: "You are HERØ, a direct, no-nonsense assistant for men who need advice about women's health issues. Your tone is confident, straight-talking, and somewhat masculine. You don't use flowery language. You give practical, actionable advice focusing on how men can support women through health challenges. You speak directly to men in a way that emphasizes strength, confidence and leadership."
-          },
-          {
-            role: "user",
-            content: input
-          }
-        ],
-        temperature: 0.7,
-        max_tokens: 500
-      })
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('OpenAI API error:', errorData);
-      throw new Error(`API error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data.choices[0].message.content;
-  } catch (error) {
-    console.error('Error calling OpenAI:', error);
-    // Fallback to local response if API call fails
-    return generateLocalResponse(input);
-  }
-}
-
-// Local response generation as fallback
-function generateLocalResponse(input: string): string {
+export function generateResponse(input: string): string {
   const inputLower = input.toLowerCase();
   
   if (inputLower.includes('menstruation') || inputLower.includes('period')) {
