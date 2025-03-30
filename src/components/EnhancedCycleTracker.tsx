@@ -55,6 +55,29 @@ const FLOW_INTENSITY = [
   'None', 'Light', 'Medium', 'Heavy'
 ];
 
+const CYCLE_PHASES = {
+  menstruation: {
+    name: "Menstruation Phase",
+    days: "Days 1-5",
+    description: "The uterine lining sheds, resulting in menstrual bleeding. Hormone levels are generally low."
+  },
+  follicular: {
+    name: "Follicular Phase",
+    days: "Days 1-14",
+    description: "Overlaps with menstruation. Follicles in the ovary mature, and estrogen levels rise."
+  },
+  ovulation: {
+    name: "Ovulation Phase",
+    days: "Day 14-16",
+    description: "A mature egg is released from the ovary. Hormone levels peak, often causing changes in mood and energy."
+  },
+  luteal: {
+    name: "Luteal Phase",
+    days: "Days 15-28",
+    description: "The body prepares for possible pregnancy. If no pregnancy occurs, hormone levels drop before the next cycle."
+  }
+};
+
 const EnhancedCycleTracker: React.FC = () => {
   const [cycleData, setCycleData] = useState<CycleData>(() => {
     const savedData = localStorage.getItem('cycleTrackerData');
@@ -85,7 +108,6 @@ const EnhancedCycleTracker: React.FC = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Save data to localStorage whenever cycleData changes
     localStorage.setItem('cycleTrackerData', JSON.stringify({
       ...cycleData,
       lastPeriodStart: cycleData.lastPeriodStart?.toISOString(),
@@ -94,7 +116,6 @@ const EnhancedCycleTracker: React.FC = () => {
   }, [cycleData]);
 
   useEffect(() => {
-    // Auto-calculate lastPeriodEnd based on lastPeriodStart and periodLength if not set
     if (cycleData.lastPeriodStart && !cycleData.lastPeriodEnd) {
       const calculatedEndDate = new Date(cycleData.lastPeriodStart);
       calculatedEndDate.setDate(calculatedEndDate.getDate() + cycleData.periodLength - 1);
@@ -109,7 +130,6 @@ const EnhancedCycleTracker: React.FC = () => {
   const handlePeriodEndChange = (date: Date | undefined) => {
     setCycleData(prev => ({ ...prev, lastPeriodEnd: date }));
     
-    // Update period length if both start and end are defined
     if (cycleData.lastPeriodStart && date) {
       const newPeriodLength = differenceInDays(date, cycleData.lastPeriodStart) + 1;
       if (newPeriodLength > 0) {
@@ -130,7 +150,6 @@ const EnhancedCycleTracker: React.FC = () => {
     if (value > 0 && value <= 14) {
       setCycleData(prev => ({ ...prev, periodLength: value }));
       
-      // Update end date if start date is set
       if (cycleData.lastPeriodStart) {
         const newEndDate = new Date(cycleData.lastPeriodStart);
         newEndDate.setDate(newEndDate.getDate() + value - 1);
@@ -200,22 +219,48 @@ const EnhancedCycleTracker: React.FC = () => {
     const lastPeriod = new Date(cycleData.lastPeriodStart);
     const daysSinceLastPeriod = differenceInDays(today, lastPeriod);
     
-    if (cycleData.useIUD && cycleData.iudType === 'hormonal') {
-      return "IUD Phase - May have minimal or no bleeding";
-    }
+    const cycleDay = (daysSinceLastPeriod % cycleData.cycleLength) + 1;
     
     if (daysSinceLastPeriod < 0) {
       return "Pre-Period Phase";
-    } else if (daysSinceLastPeriod < cycleData.periodLength) {
+    } else if (cycleDay <= cycleData.periodLength) {
       return "Menstruation Phase";
-    } else if (daysSinceLastPeriod < 14) {
+    } else if (cycleDay < 14) {
       return "Follicular Phase";
-    } else if (daysSinceLastPeriod < 16) {
+    } else if (cycleDay >= 14 && cycleDay <= 16) {
       return "Ovulation Phase";
-    } else if (daysSinceLastPeriod < cycleData.cycleLength) {
-      return "Luteal Phase";
     } else {
-      return "Pre-Period Phase";
+      return "Luteal Phase";
+    }
+  };
+
+  const getCurrentCycleDay = () => {
+    if (!cycleData.lastPeriodStart) return null;
+    
+    const today = new Date();
+    const lastPeriod = new Date(cycleData.lastPeriodStart);
+    const daysSinceLastPeriod = differenceInDays(today, lastPeriod);
+    
+    if (daysSinceLastPeriod < 0) return null;
+    
+    return (daysSinceLastPeriod % cycleData.cycleLength) + 1;
+  };
+
+  const getCurrentPhaseInfo = () => {
+    const phase = calculateCyclePhase();
+    const cycleDay = getCurrentCycleDay();
+    
+    switch (phase) {
+      case "Menstruation Phase":
+        return CYCLE_PHASES.menstruation;
+      case "Follicular Phase":
+        return CYCLE_PHASES.follicular;
+      case "Ovulation Phase":
+        return CYCLE_PHASES.ovulation;
+      case "Luteal Phase":
+        return CYCLE_PHASES.luteal;
+      default:
+        return { name: phase, days: "Unknown", description: "Information not available" };
     }
   };
 
@@ -238,6 +283,8 @@ const EnhancedCycleTracker: React.FC = () => {
   };
 
   const currentPhase = calculateCyclePhase();
+  const currentPhaseInfo = getCurrentPhaseInfo();
+  const currentCycleDay = getCurrentCycleDay();
 
   return (
     <div className="bg-card rounded-lg p-5 shadow-sm border">
@@ -404,8 +451,21 @@ const EnhancedCycleTracker: React.FC = () => {
           
           {cycleData.lastPeriodStart && (
             <div className="mt-4 p-3 bg-muted rounded-md">
-              <p className="font-medium">Current phase:</p>
-              <p className="text-primary">{currentPhase}</p>
+              <div className="mb-2">
+                <p className="font-medium">Current phase:</p>
+                <p className="text-primary">{currentPhase}</p>
+                
+                {currentCycleDay && (
+                  <p className="text-sm text-muted-foreground">
+                    Day {currentCycleDay} of your cycle
+                  </p>
+                )}
+              </div>
+              
+              <div className="space-y-1 mt-3 p-2 bg-background/50 rounded">
+                <p className="font-medium text-sm">{currentPhaseInfo.name} ({currentPhaseInfo.days})</p>
+                <p className="text-xs text-muted-foreground">{currentPhaseInfo.description}</p>
+              </div>
               
               {(!cycleData.useIUD || cycleData.flowIntensity !== 'None') && (
                 <>
@@ -427,7 +487,7 @@ const EnhancedCycleTracker: React.FC = () => {
                     <DialogTrigger asChild>
                       <Button variant="outline" size="sm" className="mt-1">
                         <Info className="mr-2 h-3 w-3" />
-                        IUD Information
+                        IUD & Cycle Information
                       </Button>
                     </DialogTrigger>
                     <DialogContent>
@@ -440,9 +500,32 @@ const EnhancedCycleTracker: React.FC = () => {
                               <ul className="list-disc pl-5 space-y-1">
                                 <li>Many users experience significantly lighter periods or no periods at all</li>
                                 <li>You may still experience cycle symptoms even without bleeding</li>
-                                <li>Tracking symptoms can help identify your cycle phase</li>
-                                <li>Your hormonal cycle may continue even if bleeding stops</li>
+                                <li>Your hormonal cycle continues even if bleeding stops</li>
                               </ul>
+                              
+                              <div className="mt-4 space-y-3">
+                                <p className="font-medium">Cycle phases with IUD:</p>
+                                
+                                <div className="space-y-1.5">
+                                  <p className="font-medium text-xs">{CYCLE_PHASES.menstruation.name}</p>
+                                  <p className="text-xs">{CYCLE_PHASES.menstruation.description} With hormonal IUD, bleeding may be light or absent, but hormonal shifts still occur.</p>
+                                </div>
+                                
+                                <div className="space-y-1.5">
+                                  <p className="font-medium text-xs">{CYCLE_PHASES.follicular.name}</p>
+                                  <p className="text-xs">{CYCLE_PHASES.follicular.description} IUD users may still experience follicular growth.</p>
+                                </div>
+                                
+                                <div className="space-y-1.5">
+                                  <p className="font-medium text-xs">{CYCLE_PHASES.ovulation.name}</p>
+                                  <p className="text-xs">{CYCLE_PHASES.ovulation.description} Hormonal IUDs may prevent ovulation in some cycles but not all.</p>
+                                </div>
+                                
+                                <div className="space-y-1.5">
+                                  <p className="font-medium text-xs">{CYCLE_PHASES.luteal.name}</p>
+                                  <p className="text-xs">{CYCLE_PHASES.luteal.description} Symptoms may be milder with a hormonal IUD.</p>
+                                </div>
+                              </div>
                             </div>
                           ) : (
                             <div className="space-y-2 mt-2 text-sm">
@@ -453,6 +536,30 @@ const EnhancedCycleTracker: React.FC = () => {
                                 <li>Tracking is similar to non-IUD tracking</li>
                                 <li>Symptoms may be more pronounced</li>
                               </ul>
+                              
+                              <div className="mt-4 space-y-3">
+                                <p className="font-medium">Cycle phases with copper IUD:</p>
+                                
+                                <div className="space-y-1.5">
+                                  <p className="font-medium text-xs">{CYCLE_PHASES.menstruation.name}</p>
+                                  <p className="text-xs">{CYCLE_PHASES.menstruation.description} Copper IUDs may cause heavier or longer periods.</p>
+                                </div>
+                                
+                                <div className="space-y-1.5">
+                                  <p className="font-medium text-xs">{CYCLE_PHASES.follicular.name}</p>
+                                  <p className="text-xs">{CYCLE_PHASES.follicular.description} Should remain unchanged with copper IUD.</p>
+                                </div>
+                                
+                                <div className="space-y-1.5">
+                                  <p className="font-medium text-xs">{CYCLE_PHASES.ovulation.name}</p>
+                                  <p className="text-xs">{CYCLE_PHASES.ovulation.description} Copper IUDs do not prevent ovulation.</p>
+                                </div>
+                                
+                                <div className="space-y-1.5">
+                                  <p className="font-medium text-xs">{CYCLE_PHASES.luteal.name}</p>
+                                  <p className="text-xs">{CYCLE_PHASES.luteal.description} Should remain unchanged with copper IUD.</p>
+                                </div>
+                              </div>
                             </div>
                           )}
                         </DialogDescription>
@@ -541,6 +648,37 @@ const EnhancedCycleTracker: React.FC = () => {
             <div className="p-3 bg-muted rounded-md">
               <h3 className="font-medium">Current Mood</h3>
               <p>{cycleData.mood}</p>
+            </div>
+          )}
+          
+          {cycleData.lastPeriodStart && (
+            <div className="p-3 bg-muted rounded-md mt-4">
+              <h3 className="font-medium">Cycle Phase Information</h3>
+              <p className="text-sm">{currentPhase}</p>
+              
+              <div className="mt-2 space-y-2">
+                <p className="text-xs font-medium">What to expect in this phase:</p>
+                <p className="text-xs">{currentPhaseInfo.description}</p>
+                
+                <div className="grid grid-cols-2 gap-2 mt-3">
+                  <div className="bg-background/60 p-2 rounded text-xs">
+                    <p className="font-medium">Menstruation</p>
+                    <p className="text-muted-foreground">{CYCLE_PHASES.menstruation.days}</p>
+                  </div>
+                  <div className="bg-background/60 p-2 rounded text-xs">
+                    <p className="font-medium">Follicular</p>
+                    <p className="text-muted-foreground">{CYCLE_PHASES.follicular.days}</p>
+                  </div>
+                  <div className="bg-background/60 p-2 rounded text-xs">
+                    <p className="font-medium">Ovulation</p>
+                    <p className="text-muted-foreground">{CYCLE_PHASES.ovulation.days}</p>
+                  </div>
+                  <div className="bg-background/60 p-2 rounded text-xs">
+                    <p className="font-medium">Luteal</p>
+                    <p className="text-muted-foreground">{CYCLE_PHASES.luteal.days}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </TabsContent>
