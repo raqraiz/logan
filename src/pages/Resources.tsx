@@ -34,7 +34,7 @@ const Resources = () => {
       summary: "Practical ways to be there for her while maintaining your own balance.",
       category: "Support",
       readTime: "5 min",
-      image: "https://images.unsplash.com/photo-1574279606130-09958dc756f7?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1664574653790-cee0e10a4242?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Being a supportive partner doesn't mean sacrificing your sanity. Here are five practical approaches that work:</p>
@@ -64,7 +64,7 @@ const Resources = () => {
       summary: "No-nonsense information that actually helps you be a better partner.",
       category: "Education",
       readTime: "6 min",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1551761429-8232f9f5955c?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Skip the awkwardness and confusion. Here's what you actually need to know about women's health to be an effective partner:</p>
@@ -94,7 +94,7 @@ const Resources = () => {
       summary: "Learn what's actually happening during her cycle, how to spot the signs, and what to do (and not do) when it's that time of the month.",
       category: "Health",
       readTime: "4 min",
-      image: "https://images.unsplash.com/photo-1576089073624-b5417ec53f82?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1609942072337-c3370e820998?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Let's cut through the confusion. Here's what you actually need to know about periods:</p>
@@ -130,7 +130,7 @@ const Resources = () => {
       summary: "How to be the MVP during pregnancy and after the baby comes. Step up your game when she needs you most.",
       category: "Parenting",
       readTime: "7 min",
-      image: "https://images.unsplash.com/photo-1617331721458-bd3bd3f9c7f8?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1607217271472-9531c7ab31d8?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Whether you're planning for a baby or already expecting, here's your game plan for being the partner she needs:</p>
@@ -167,7 +167,7 @@ const Resources = () => {
       summary: "When she's stressing or freaking out, here's how to keep your cool and bring her back to reality without losing your mind.",
       category: "Relationships",
       readTime: "5 min",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>When stress, anxiety, or overwhelming emotions hit your partner, here's how to handle it effectively:</p>
@@ -204,7 +204,7 @@ const Resources = () => {
       summary: "The straight facts on why she acts different sometimes and how to deal with it like a champ. Biology isn't an excuse for chaos.",
       category: "Health",
       readTime: "5 min",
-      image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1604480132736-44c188fe4d20?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Hormones are powerful chemical messengers that affect everything from mood to energy levels. Here's how to navigate the reality of hormonal fluctuations:</p>
@@ -247,7 +247,7 @@ const Resources = () => {
       summary: "Cut through the bullshit with straight-up communication that gets results. No mind games, no drama.",
       category: "Communication",
       readTime: "4 min",
-      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Effective communication is the foundation of any solid relationship. Here's how to master it:</p>
@@ -298,7 +298,7 @@ const Resources = () => {
       summary: "How to be there for her without losing yourself. Set boundaries, maintain your priorities, and stay on top of your game.",
       category: "Self-care",
       readTime: "6 min",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Supporting your partner shouldn't mean sacrificing your own well-being. Here's how to maintain balance:</p>
@@ -369,7 +369,6 @@ const Resources = () => {
         console.error("Error sharing:", error);
       }
     } else {
-      // Fallback for browsers that don't support the Web Share API
       handleCopyLink(article.id);
     }
   };
