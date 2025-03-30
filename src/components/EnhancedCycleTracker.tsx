@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { format, addDays, differenceInDays } from 'date-fns';
 import { Calendar as CalendarIcon, Bell, Save, Info } from 'lucide-react';
@@ -278,7 +279,7 @@ const EnhancedCycleTracker: React.FC = () => {
     
     toast({
       title: "Cycle data saved",
-      description: "Your cycle tracking information has been updated."
+      description: "Her cycle tracking information has been updated."
     });
   };
 
@@ -296,7 +297,7 @@ const EnhancedCycleTracker: React.FC = () => {
         
         <TabsContent value="tracker" className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="last-period-start">Last period start date</Label>
+            <Label htmlFor="last-period-start">Her last period start date</Label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -327,7 +328,7 @@ const EnhancedCycleTracker: React.FC = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="last-period-end">Last period end date</Label>
+            <Label htmlFor="last-period-end">Her last period end date</Label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -359,7 +360,7 @@ const EnhancedCycleTracker: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="cycle-length">Cycle length (days)</Label>
+              <Label htmlFor="cycle-length">Her cycle length (days)</Label>
               <input
                 id="cycle-length"
                 type="number"
@@ -372,7 +373,7 @@ const EnhancedCycleTracker: React.FC = () => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="period-length">Period length (days)</Label>
+              <Label htmlFor="period-length">Her period length (days)</Label>
               <input
                 id="period-length"
                 type="number"
@@ -390,7 +391,7 @@ const EnhancedCycleTracker: React.FC = () => {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label htmlFor="iud-toggle">IUD User</Label>
-                <div className="text-sm text-muted-foreground">Track cycle with little or no bleeding</div>
+                <div className="text-sm text-muted-foreground">Track her cycle with little or no bleeding</div>
               </div>
               <Switch
                 id="iud-toggle"
@@ -445,19 +446,19 @@ const EnhancedCycleTracker: React.FC = () => {
             />
             <Label htmlFor="notifications" className="flex items-center">
               <Bell className="mr-2 h-4 w-4" />
-              Enable notifications
+              Enable notifications for her cycle
             </Label>
           </div>
           
           {cycleData.lastPeriodStart && (
             <div className="mt-4 p-3 bg-muted rounded-md">
               <div className="mb-2">
-                <p className="font-medium">Current phase:</p>
+                <p className="font-medium">Her current phase:</p>
                 <p className="text-primary">{currentPhase}</p>
                 
                 {currentCycleDay && (
                   <p className="text-sm text-muted-foreground">
-                    Day {currentCycleDay} of your cycle
+                    Day {currentCycleDay} of her cycle
                   </p>
                 )}
               </div>
@@ -469,7 +470,7 @@ const EnhancedCycleTracker: React.FC = () => {
               
               {(!cycleData.useIUD || cycleData.flowIntensity !== 'None') && (
                 <>
-                  <p className="font-medium mt-2">Next period expected:</p>
+                  <p className="font-medium mt-2">Her next period expected:</p>
                   <p className="text-primary">{nextPeriod ? format(nextPeriod, "MMMM d, yyyy") : "Unknown"}</p>
                   <p className="text-sm text-muted-foreground mt-1">
                     {daysUntilNextPeriod === 0 
@@ -573,13 +574,13 @@ const EnhancedCycleTracker: React.FC = () => {
 
           <Button onClick={saveTrackerData} className="w-full">
             <Save className="mr-2 h-4 w-4" />
-            Save Tracker Data
+            Save Her Cycle Data
           </Button>
         </TabsContent>
         
         <TabsContent value="insights" className="space-y-4">
           <div className="space-y-2">
-            <Label>Symptoms</Label>
+            <Label>Her Symptoms</Label>
             <div className="grid grid-cols-2 gap-2">
               {SYMPTOMS.map(symptom => (
                 <div key={symptom} className="flex items-center space-x-2">
@@ -597,7 +598,7 @@ const EnhancedCycleTracker: React.FC = () => {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="mood">Current Mood</Label>
+            <Label htmlFor="mood">Her Current Mood</Label>
             <Select 
               value={cycleData.mood} 
               onValueChange={handleMoodChange}
@@ -616,24 +617,24 @@ const EnhancedCycleTracker: React.FC = () => {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="notes">Notes</Label>
+            <Label htmlFor="notes">Notes About Her Cycle</Label>
             <textarea
               id="notes"
               value={cycleData.notes}
               onChange={handleNotesChange}
-              placeholder="Add any notes about your cycle..."
+              placeholder="Add any notes about her cycle..."
               className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             />
           </div>
           
           <Button onClick={saveTrackerData} className="w-full">
             <Save className="mr-2 h-4 w-4" />
-            Save Log Data
+            Save Her Log Data
           </Button>
           
           {cycleData.symptoms.length > 0 && (
             <div className="p-3 bg-muted rounded-md mt-4">
-              <h3 className="font-medium">Tracked Symptoms</h3>
+              <h3 className="font-medium">Her Tracked Symptoms</h3>
               <div className="flex flex-wrap gap-1 mt-1">
                 {cycleData.symptoms.map(symptom => (
                   <span key={symptom} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
@@ -646,18 +647,18 @@ const EnhancedCycleTracker: React.FC = () => {
           
           {cycleData.mood && (
             <div className="p-3 bg-muted rounded-md">
-              <h3 className="font-medium">Current Mood</h3>
+              <h3 className="font-medium">Her Current Mood</h3>
               <p>{cycleData.mood}</p>
             </div>
           )}
           
           {cycleData.lastPeriodStart && (
             <div className="p-3 bg-muted rounded-md mt-4">
-              <h3 className="font-medium">Cycle Phase Information</h3>
+              <h3 className="font-medium">Her Cycle Phase Information</h3>
               <p className="text-sm">{currentPhase}</p>
               
               <div className="mt-2 space-y-2">
-                <p className="text-xs font-medium">What to expect in this phase:</p>
+                <p className="text-xs font-medium">What to expect in her current phase:</p>
                 <p className="text-xs">{currentPhaseInfo.description}</p>
                 
                 <div className="grid grid-cols-2 gap-2 mt-3">

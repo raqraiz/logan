@@ -19,7 +19,7 @@ const CycleTrackerPage = () => {
           >
             <h1 className="text-3xl font-bold mb-2">Partner Cycle Tracker</h1>
             <p className="text-foreground/70 mb-6">
-              Track your partner's cycle to better support their health needs
+              Track her cycle to better support her health needs
             </p>
           </motion.div>
           
