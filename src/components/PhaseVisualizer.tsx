@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, Calendar, MoveRight, Droplet, Cloud, Sun, Zap, ChevronDown, ChevronUp, Info } from 'lucide-react';
@@ -279,36 +280,36 @@ const PhaseVisualizer: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className={`mt-3 p-4 rounded-lg border ${getPhaseConfig(expandedPhase).borderColor} bg-white`}
+            className={`mt-3 p-4 rounded-lg border ${getPhaseConfig(expandedPhase).borderColor} bg-white text-black`}
           >
-            <h4 className="font-bold mb-2">{expandedPhase}</h4>
+            <h4 className="font-bold mb-2 text-black">{expandedPhase}</h4>
             
-            <p className="text-sm mb-3">
+            <p className="text-sm mb-3 text-black">
               {getPhaseConfig(expandedPhase).detailedDescription}
             </p>
 
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="do" className="border-b-0">
-                <AccordionTrigger className="py-2 text-sm font-medium">
+                <AccordionTrigger className="py-2 text-sm font-medium text-black">
                   Hero Actions (What to do)
                 </AccordionTrigger>
                 <AccordionContent>
-                  <ul className="list-disc pl-5 text-sm space-y-1">
+                  <ul className="list-disc pl-5 text-sm space-y-1 text-black">
                     {getPhaseConfig(expandedPhase).doList.map((item, index) => (
-                      <li key={`do-${index}`} className="text-gray-700">{item}</li>
+                      <li key={`do-${index}`} className="text-black">{item}</li>
                     ))}
                   </ul>
                 </AccordionContent>
               </AccordionItem>
               
               <AccordionItem value="dont">
-                <AccordionTrigger className="py-2 text-sm font-medium">
+                <AccordionTrigger className="py-2 text-sm font-medium text-black">
                   Caution Zone (What to avoid)
                 </AccordionTrigger>
                 <AccordionContent>
-                  <ul className="list-disc pl-5 text-sm space-y-1">
+                  <ul className="list-disc pl-5 text-sm space-y-1 text-black">
                     {getPhaseConfig(expandedPhase).dontList.map((item, index) => (
-                      <li key={`dont-${index}`} className="text-gray-700">{item}</li>
+                      <li key={`dont-${index}`} className="text-black">{item}</li>
                     ))}
                   </ul>
                 </AccordionContent>
@@ -317,17 +318,17 @@ const PhaseVisualizer: React.FC = () => {
 
             <HoverCard>
               <HoverCardTrigger asChild>
-                <button className="text-xs flex items-center text-gray-500 mt-2">
+                <button className="text-xs flex items-center text-gray-700 mt-2">
                   <Info className="h-3 w-3 mr-1" />
                   Medical perspective
                 </button>
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <div className="text-sm">
-                  <p className="font-semibold mb-1">
+                  <p className="font-semibold mb-1 text-black">
                     {getPhaseConfig(expandedPhase).medicalName}
                   </p>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-black">
                     {expandedPhase.toLowerCase().includes('red') ? 
                       "The shedding of the uterine lining. Estrogen and progesterone levels are at their lowest." : 
                     expandedPhase.toLowerCase().includes('recovery') ? 
