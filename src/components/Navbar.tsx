@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Dumbbell } from 'lucide-react';
+import { Dumbbell, Calendar } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -47,6 +47,13 @@ const Navbar = () => {
             className={`nav-link ${location.pathname === '/chat' ? 'active' : ''}`}
           >
             Chat
+          </Link>
+          <Link 
+            to="/cycle-tracker" 
+            className={`nav-link ${location.pathname === '/cycle-tracker' ? 'active' : ''}`}
+          >
+            <Calendar className="w-4 h-4 mr-1 inline-block" />
+            Cycle Tracker
           </Link>
           <Link 
             to="/resources" 

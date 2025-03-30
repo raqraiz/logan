@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Chat from "./pages/Chat";
 import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
+import CycleTracker from "./pages/CycleTracker";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => {
               <Route path="/" element={<Index />} />
               <Route path="/chat" element={<Chat />} />
               <Route path="/resources" element={<Resources />} />
+              <Route path="/cycle-tracker" element={<CycleTracker />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>

@@ -2,14 +2,12 @@
 import { motion } from 'framer-motion';
 import { Calendar } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import ChatInterface from '@/components/ChatInterface';
-import CycleTrackerModal from '@/components/CycleTrackerModal';
 import { Button } from '@/components/ui/button';
 
 const Chat = () => {
-  const [isCycleTrackerOpen, setIsCycleTrackerOpen] = useState(false);
-
   return (
     <div className="min-h-screen flex flex-col page-transition">
       <Navbar />
@@ -26,14 +24,15 @@ const Chat = () => {
             <p className="text-foreground/70 mb-4">
               Get practical, actionable advice for supporting your partner's health needs effectively.
             </p>
-            <Button 
-              variant="outline" 
-              onClick={() => setIsCycleTrackerOpen(true)}
-              className="mx-auto"
-            >
-              <Calendar className="mr-2 h-4 w-4" />
-              Partner Cycle Tracker
-            </Button>
+            <Link to="/cycle-tracker">
+              <Button 
+                variant="outline" 
+                className="mx-auto"
+              >
+                <Calendar className="mr-2 h-4 w-4" />
+                Partner Cycle Tracker
+              </Button>
+            </Link>
           </motion.div>
           
           <motion.div
@@ -44,11 +43,6 @@ const Chat = () => {
           >
             <ChatInterface />
           </motion.div>
-          
-          <CycleTrackerModal 
-            isOpen={isCycleTrackerOpen} 
-            onClose={() => setIsCycleTrackerOpen(false)} 
-          />
         </div>
       </main>
     </div>
