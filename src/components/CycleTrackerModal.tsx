@@ -2,7 +2,9 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import { motion } from 'framer-motion';
-import CycleTracker from './CycleTracker';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from '@/components/ui/sheet';
+import { useIsMobile } from '@/hooks/use-mobile';
+import EnhancedCycleTracker from './EnhancedCycleTracker';
 
 interface CycleTrackerModalProps {
   isOpen: boolean;
@@ -10,6 +12,26 @@ interface CycleTrackerModalProps {
 }
 
 const CycleTrackerModal: React.FC<CycleTrackerModalProps> = ({ isOpen, onClose }) => {
+  const isMobile = useIsMobile();
+  
+  if (isMobile) {
+    return (
+      <Sheet open={isOpen} onOpenChange={onClose}>
+        <SheetContent side="bottom" className="h-[90vh] overflow-y-auto rounded-t-xl">
+          <SheetHeader className="mb-4">
+            <SheetTitle className="text-xl">Cycle Tracker</SheetTitle>
+            <SheetDescription>
+              Adjust and view her cycle information
+            </SheetDescription>
+          </SheetHeader>
+          <div className="pb-20">
+            <EnhancedCycleTracker />
+          </div>
+        </SheetContent>
+      </Sheet>
+    );
+  }
+
   if (!isOpen) return null;
 
   return (
@@ -31,7 +53,7 @@ const CycleTrackerModal: React.FC<CycleTrackerModalProps> = ({ isOpen, onClose }
           </button>
         </div>
         <div className="p-5">
-          <CycleTracker />
+          <EnhancedCycleTracker />
         </div>
       </motion.div>
     </div>
