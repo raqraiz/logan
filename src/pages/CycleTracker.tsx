@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Share2 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import EnhancedCycleTracker from '@/components/EnhancedCycleTracker';
+import PhaseVisualizer from '@/components/PhaseVisualizer';
 import { Button } from '@/components/ui/button';
 
 const CycleTrackerPage = () => {
@@ -33,6 +34,15 @@ const CycleTrackerPage = () => {
                 Check out shareable content
               </Button>
             </Link>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="glass-card rounded-2xl overflow-hidden p-4 mb-4"
+          >
+            <PhaseVisualizer />
           </motion.div>
           
           <motion.div
