@@ -34,7 +34,7 @@ const Resources = () => {
       summary: "Practical ways to be there for her while maintaining your own balance.",
       category: "Support",
       readTime: "5 min",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1516401266446-6432a8a07d41?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Being a supportive partner doesn't mean sacrificing your sanity. Here are five practical approaches that work:</p>
@@ -64,7 +64,7 @@ const Resources = () => {
       summary: "No-nonsense information that actually helps you be a better partner.",
       category: "Education",
       readTime: "6 min",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Skip the awkwardness and confusion. Here's what you actually need to know about women's health to be an effective partner:</p>
@@ -94,7 +94,7 @@ const Resources = () => {
       summary: "Learn what's actually happening during her cycle, how to spot the signs, and what to do (and not do) when it's that time of the month.",
       category: "Health",
       readTime: "4 min",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Let's cut through the confusion. Here's what you actually need to know about periods:</p>
@@ -130,7 +130,7 @@ const Resources = () => {
       summary: "How to be the MVP during pregnancy and after the baby comes. Step up your game when she needs you most.",
       category: "Parenting",
       readTime: "7 min",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1518795108696-d31b9bd4e750?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Whether you're planning for a baby or already expecting, here's your game plan for being the partner she needs:</p>
@@ -167,7 +167,7 @@ const Resources = () => {
       summary: "When she's stressing or freaking out, here's how to keep your cool and bring her back to reality without losing your mind.",
       category: "Relationships",
       readTime: "5 min",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>When stress, anxiety, or overwhelming emotions hit your partner, here's how to handle it effectively:</p>
@@ -204,7 +204,7 @@ const Resources = () => {
       summary: "The straight facts on why she acts different sometimes and how to deal with it like a champ. Biology isn't an excuse for chaos.",
       category: "Health",
       readTime: "5 min",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Hormones are powerful chemical messengers that affect everything from mood to energy levels. Here's how to navigate the reality of hormonal fluctuations:</p>
@@ -247,7 +247,7 @@ const Resources = () => {
       summary: "Cut through the bullshit with straight-up communication that gets results. No mind games, no drama.",
       category: "Communication",
       readTime: "4 min",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1573497161161-c3e73707e25c?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Effective communication is the foundation of any solid relationship. Here's how to master it:</p>
@@ -298,7 +298,7 @@ const Resources = () => {
       summary: "How to be there for her without losing yourself. Set boundaries, maintain your priorities, and stay on top of your game.",
       category: "Self-care",
       readTime: "6 min",
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Supporting your partner shouldn't mean sacrificing your own well-being. Here's how to maintain balance:</p>
