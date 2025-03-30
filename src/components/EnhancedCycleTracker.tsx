@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { format, addDays, differenceInDays } from 'date-fns';
 import { Calendar as CalendarIcon, Bell, Save, Info } from 'lucide-react';
@@ -60,21 +59,25 @@ const FLOW_INTENSITY = [
 const CYCLE_PHASES = {
   menstruation: {
     name: "Red Zone",
+    medicalName: "Menstrual Phase",
     days: "Days 1-5",
     description: "She may need extra support and comfort. Hormone levels are generally low. Bring chocolate, be patient."
   },
   follicular: {
     name: "Recovery Zone",
+    medicalName: "Follicular Phase",
     days: "Days 1-14",
     description: "Energy is returning. She's likely feeling better and more upbeat as estrogen rises."
   },
   ovulation: {
     name: "Green Zone",
+    medicalName: "Ovulatory Phase",
     days: "Day 14-16",
     description: "Peak energy and mood. She's likely feeling her best with peak hormone levels. Great time for date nights."
   },
   luteal: {
     name: "Yellow Zone",
+    medicalName: "Luteal Phase",
     days: "Days 15-28",
     description: "PMS alert. Energy declining, potential mood changes. Be extra supportive and understanding."
   }
@@ -262,7 +265,7 @@ const EnhancedCycleTracker: React.FC = () => {
       case "Yellow Zone":
         return CYCLE_PHASES.luteal;
       default:
-        return { name: phase, days: "Unknown", description: "Information not available yet. Add her last cycle date to get started." };
+        return { name: phase, medicalName: "", days: "Unknown", description: "Information not available yet. Add her last cycle date to get started." };
     }
   };
 
@@ -309,9 +312,7 @@ const EnhancedCycleTracker: React.FC = () => {
       lastPeriodEnd: cycleData.lastPeriodEnd?.toISOString()
     }));
     
-    // Show a notification that data is saved
     if (cycleData.notifications) {
-      // Schedule notifications for upcoming phase changes
       const nextPhaseInfo = getNextPhase();
       if (nextPhaseInfo.days > 0 && nextPhaseInfo.days <= 3) {
         toast({
@@ -500,6 +501,12 @@ const EnhancedCycleTracker: React.FC = () => {
               <div className="mb-2">
                 <p className="font-medium">Her current zone:</p>
                 <p className="text-primary font-bold text-lg">{currentPhase}</p>
+                
+                {currentPhaseInfo.medicalName && (
+                  <p className="text-xs text-muted-foreground italic">
+                    {currentPhaseInfo.medicalName}
+                  </p>
+                )}
                 
                 {currentCycleDay && (
                   <p className="text-sm text-muted-foreground">
@@ -710,6 +717,12 @@ const EnhancedCycleTracker: React.FC = () => {
               <h3 className="font-medium">Zone Support Guide</h3>
               <p className="text-sm font-bold">{currentPhase}</p>
               
+              {currentPhaseInfo.medicalName && (
+                <p className="text-xs text-muted-foreground italic mb-1">
+                  {currentPhaseInfo.medicalName}
+                </p>
+              )}
+              
               <div className="mt-2 space-y-2">
                 <p className="text-xs font-medium">How to be a hero in her current zone:</p>
                 <p className="text-xs">{currentPhaseInfo.description}</p>
@@ -719,21 +732,25 @@ const EnhancedCycleTracker: React.FC = () => {
                     <p className="font-medium">Red Zone</p>
                     <p className="text-muted-foreground">{CYCLE_PHASES.menstruation.days}</p>
                     <p className="text-xs mt-1">Comfort and patience needed</p>
+                    <p className="text-xs text-gray-400 italic">{CYCLE_PHASES.menstruation.medicalName}</p>
                   </div>
                   <div className={`p-2 rounded text-xs ${currentPhase === "Recovery Zone" ? "bg-blue-100 border border-blue-200" : "bg-background/60"}`}>
                     <p className="font-medium">Recovery Zone</p>
                     <p className="text-muted-foreground">{CYCLE_PHASES.follicular.days}</p>
                     <p className="text-xs mt-1">Energy returning</p>
+                    <p className="text-xs text-gray-400 italic">{CYCLE_PHASES.follicular.medicalName}</p>
                   </div>
                   <div className={`p-2 rounded text-xs ${currentPhase === "Green Zone" ? "bg-green-100 border border-green-200" : "bg-background/60"}`}>
                     <p className="font-medium">Green Zone</p>
                     <p className="text-muted-foreground">{CYCLE_PHASES.ovulation.days}</p>
                     <p className="text-xs mt-1">Peak energy, great for plans</p>
+                    <p className="text-xs text-gray-400 italic">{CYCLE_PHASES.ovulation.medicalName}</p>
                   </div>
                   <div className={`p-2 rounded text-xs ${currentPhase === "Yellow Zone" ? "bg-yellow-100 border border-yellow-200" : "bg-background/60"}`}>
                     <p className="font-medium">Yellow Zone</p>
                     <p className="text-muted-foreground">{CYCLE_PHASES.luteal.days}</p>
                     <p className="text-xs mt-1">PMS alert, extra patience</p>
+                    <p className="text-xs text-gray-400 italic">{CYCLE_PHASES.luteal.medicalName}</p>
                   </div>
                 </div>
                 

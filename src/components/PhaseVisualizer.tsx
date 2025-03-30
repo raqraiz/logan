@@ -7,6 +7,7 @@ import { differenceInDays } from 'date-fns';
 const CYCLE_PHASES = {
   menstruation: {
     name: "Red Zone",
+    medicalName: "Menstrual Phase",
     days: "Days 1-5",
     description: "Extra support needed",
     color: "bg-red-100",
@@ -16,6 +17,7 @@ const CYCLE_PHASES = {
   },
   follicular: {
     name: "Recovery Zone",
+    medicalName: "Follicular Phase",
     days: "Days 1-14",
     description: "Energy returning",
     color: "bg-blue-100",
@@ -25,6 +27,7 @@ const CYCLE_PHASES = {
   },
   ovulation: {
     name: "Green Zone",
+    medicalName: "Ovulatory Phase",
     days: "Days 14-16",
     description: "Peak energy & mood",
     color: "bg-green-100",
@@ -34,6 +37,7 @@ const CYCLE_PHASES = {
   },
   luteal: {
     name: "Yellow Zone",
+    medicalName: "Luteal Phase",
     days: "Days 15-28",
     description: "PMS alert",
     color: "bg-yellow-100",
@@ -112,6 +116,7 @@ const PhaseVisualizer: React.FC = () => {
       default:
         return {
           name: "Unknown",
+          medicalName: "",
           days: "No data",
           description: "Add cycle data to view",
           color: "bg-gray-100",
@@ -190,6 +195,11 @@ const PhaseVisualizer: React.FC = () => {
                 {phaseDetails.name}
               </h3>
               <p className="text-sm text-gray-600">{phaseDetails.days}</p>
+              {phaseDetails.medicalName && (
+                <p className="text-xs text-gray-400 italic">
+                  {phaseDetails.medicalName}
+                </p>
+              )}
             </div>
           </div>
           
