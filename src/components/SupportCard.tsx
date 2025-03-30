@@ -1,26 +1,41 @@
 
 import { motion } from 'framer-motion';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 interface SupportCardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
   delay?: number;
+  image?: string;
 }
 
-const SupportCard = ({ title, description, icon, delay = 0 }: SupportCardProps) => {
+const SupportCard = ({ title, description, icon, delay = 0, image }: SupportCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: delay * 0.1 }}
-      className="glass-card rounded-2xl p-6 hover:shadow-xl transition-all duration-300"
+      className="glass-card rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300"
     >
-      <div className="w-12 h-12 rounded-full bg-alpha-graphite flex items-center justify-center mb-4 text-alpha-cyan">
-        {icon}
+      {image && (
+        <div>
+          <AspectRatio ratio={16 / 9}>
+            <img 
+              src={image} 
+              alt={title} 
+              className="object-cover w-full h-full"
+            />
+          </AspectRatio>
+        </div>
+      )}
+      <div className="p-6">
+        <div className="w-12 h-12 rounded-full bg-alpha-graphite flex items-center justify-center mb-4 text-alpha-cyan">
+          {icon}
+        </div>
+        <h3 className="text-xl font-medium mb-2 text-alpha-white">{title}</h3>
+        <p className="text-alpha-white/70 leading-relaxed">{description}</p>
       </div>
-      <h3 className="text-xl font-medium mb-2 text-alpha-white">{title}</h3>
-      <p className="text-alpha-white/70 leading-relaxed">{description}</p>
     </motion.div>
   );
 };

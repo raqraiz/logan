@@ -1,7 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Share2, Heart, Copy, Check, Info } from 'lucide-react';
+import { Share2, Heart, Copy, Check, Info, BookOpen, User, Calendar } from 'lucide-react';
 import { toast } from 'sonner';
 import Navbar from '@/components/Navbar';
 import SupportCard from '@/components/SupportCard';
@@ -19,6 +19,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 type Article = {
   id: string;
@@ -41,7 +42,8 @@ const Resources = () => {
           <path d="M12 3v18" />
           <path d="M3 12h18" />
         </svg>
-      )
+      ),
+      image: "https://images.unsplash.com/photo-1576089073624-b5417ec53f82?auto=format&fit=crop&w=800&q=80"
     },
     {
       title: "The Baby Playbook",
@@ -52,7 +54,8 @@ const Resources = () => {
           <path d="M12 3v12" />
           <path d="M5 8h14" />
         </svg>
-      )
+      ),
+      image: "https://images.unsplash.com/photo-1617331721458-bd3bd3f9c7f8?auto=format&fit=crop&w=800&q=80"
     },
     {
       title: "Handling Her Head Game",
@@ -61,7 +64,8 @@ const Resources = () => {
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z" />
         </svg>
-      )
+      ),
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
     },
     {
       title: "Hormone Hacks",
@@ -77,7 +81,8 @@ const Resources = () => {
           <line x1="23" y1="22" x2="1" y2="22" />
           <polyline points="8 6 12 2 16 6" />
         </svg>
-      )
+      ),
+      image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=800&q=80"
     },
     {
       title: "Talk Tactics",
@@ -87,7 +92,8 @@ const Resources = () => {
           <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v5Z" />
           <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
         </svg>
-      )
+      ),
+      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80"
     },
     {
       title: "Keeping Your Edge",
@@ -96,7 +102,8 @@ const Resources = () => {
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
         </svg>
-      )
+      ),
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
     }
   ];
 
@@ -105,6 +112,7 @@ const Resources = () => {
       id: 'support-during-health',
       title: "5 Ways Men Can Support Their Partners During Health Challenges (Without Losing Their Mind)",
       summary: "Practical ways to be there for her while maintaining your own balance.",
+      image: "https://images.unsplash.com/photo-1574279606130-09958dc756f7?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Being a supportive partner doesn't mean sacrificing your sanity. Here are five practical approaches that work:</p>
@@ -132,6 +140,7 @@ const Resources = () => {
       id: 'practical-guide',
       title: "What Every Guy Needs to Know About Women's Health – A Practical Guide",
       summary: "No-nonsense information that actually helps you be a better partner.",
+      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80",
       content: (
         <div className="space-y-4">
           <p>Skip the awkwardness and confusion. Here's what you actually need to know about women's health to be an effective partner:</p>
@@ -215,6 +224,7 @@ const Resources = () => {
                     description={resource.description}
                     icon={resource.icon}
                     delay={index}
+                    image={resource.image}
                   />
                 ))}
               </div>
@@ -248,7 +258,25 @@ const Resources = () => {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="glass-card rounded-2xl overflow-hidden"
                   >
+                    {article.image && (
+                      <div>
+                        <AspectRatio ratio={16 / 9}>
+                          <img 
+                            src={article.image} 
+                            alt={article.title} 
+                            className="object-cover w-full h-full rounded-t-2xl"
+                          />
+                        </AspectRatio>
+                      </div>
+                    )}
                     <div className="p-6">
+                      <div className="flex items-center mb-3 text-muted-foreground">
+                        <BookOpen className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Article</span>
+                        <span className="mx-2">•</span>
+                        <Calendar className="h-4 w-4 mr-2" />
+                        <span className="text-sm">5 min read</span>
+                      </div>
                       <h2 className="text-xl font-semibold mb-3">{article.title}</h2>
                       <p className="text-foreground/70 mb-5">{article.summary}</p>
                       
@@ -312,6 +340,18 @@ const Resources = () => {
               {openArticle?.summary}
             </DialogDescription>
           </DialogHeader>
+          
+          {openArticle?.image && (
+            <div className="mt-2 rounded-md overflow-hidden">
+              <AspectRatio ratio={16 / 9}>
+                <img 
+                  src={openArticle.image} 
+                  alt={openArticle.title} 
+                  className="object-cover w-full h-full"
+                />
+              </AspectRatio>
+            </div>
+          )}
           
           <div className="mt-4">
             {openArticle?.content}
