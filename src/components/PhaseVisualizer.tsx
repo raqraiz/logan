@@ -5,6 +5,7 @@ import { differenceInDays } from 'date-fns';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 const CYCLE_PHASES = {
   menstruation: {
@@ -197,9 +198,16 @@ const PhaseVisualizer: React.FC = () => {
                 currentPhase === phase.name ? phase.textColor : 'text-gray-500'
               } ${phase.hoverColor} rounded-md py-1 cursor-pointer`}
             >
-              <phase.icon className={`h-5 w-5 mx-auto ${
-                currentPhase === phase.name ? 'animate-pulse' : ''
-              }`} />
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <phase.icon className={`h-5 w-5 mx-auto ${
+                    currentPhase === phase.name ? 'animate-pulse' : ''
+                  }`} />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="text-xs">{phase.medicalName}</p>
+                </TooltipContent>
+              </Tooltip>
               <p className="text-xs font-medium mt-1">{phase.name}</p>
               {expandedPhase === phase.name ? (
                 <ChevronUp className="h-3 w-3 mx-auto mt-1" />

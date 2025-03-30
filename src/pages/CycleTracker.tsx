@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import EnhancedCycleTracker from '@/components/EnhancedCycleTracker';
 import PhaseVisualizer from '@/components/PhaseVisualizer';
 import { Button } from '@/components/ui/button';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 const CycleTrackerPage = () => {
   return (
@@ -36,23 +37,25 @@ const CycleTrackerPage = () => {
             </Link>
           </motion.div>
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="glass-card rounded-2xl overflow-hidden p-4 mb-4"
-          >
-            <PhaseVisualizer />
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="glass-card rounded-2xl overflow-hidden p-4"
-          >
-            <EnhancedCycleTracker />
-          </motion.div>
+          <TooltipProvider>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="glass-card rounded-2xl overflow-hidden p-4 mb-4"
+            >
+              <PhaseVisualizer />
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="glass-card rounded-2xl overflow-hidden p-4"
+            >
+              <EnhancedCycleTracker />
+            </motion.div>
+          </TooltipProvider>
         </div>
       </main>
     </div>
