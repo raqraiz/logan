@@ -29,7 +29,7 @@ const ChatInterface = () => {
     setIsTyping(true);
     
     try {
-      const response = generateResponse(input);
+      const response = await generateResponse(input);
       
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -40,9 +40,10 @@ const ChatInterface = () => {
       
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
+      console.error("Error in handleSend:", error);
       toast({
         title: "Error",
-        description: "Something went wrong. Try again.",
+        description: "Something went wrong with the AI response. Try again.",
         variant: "destructive",
       });
     } finally {

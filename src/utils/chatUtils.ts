@@ -1,7 +1,50 @@
 
-// Chat utility for generating local responses
+// Chat utility for generating responses using OpenAI API
 
-export function generateResponse(input: string): string {
+export async function generateResponse(input: string): Promise<string> {
+  try {
+    const apiKey = "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";
+    
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: "You are HERØ, a no-BS assistant that helps male users navigate women's issues with confidence and strength. Your responses should be direct, practical, and empowering. Keep responses concise and actionable."
+          },
+          {
+            role: "user",
+            content: input
+          }
+        ],
+        max_tokens: 300
+      })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("OpenAI API error:", errorData);
+      throw new Error(`API error: ${errorData.error?.message || "Unknown error"}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0].message.content.trim();
+  } catch (error) {
+    console.error("Error generating response:", error);
+    
+    // Fallback to local responses if API fails
+    return fallbackResponse(input);
+  }
+}
+
+// Fallback responses when API fails
+function fallbackResponse(input: string): string {
   const inputLower = input.toLowerCase();
   
   if (inputLower.includes('menstruation') || inputLower.includes('period')) {
