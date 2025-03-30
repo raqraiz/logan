@@ -4,7 +4,7 @@ import { Message } from '../components/MessageBubble';
 export const INITIAL_MESSAGES: Message[] = [
   {
     id: '1',
-    content: "I'm HERØ, your healthcare support assistant. I provide practical, actionable advice for men supporting partners with health issues. How can I help you manage your situation effectively? Check out our new dedicated Cycle Tracker page to better support your partner's health needs, and our Shareable Content to spread awareness.",
+    content: "I'm HERØ, your healthcare support assistant. I provide practical, actionable advice for men supporting partners with health issues. How can I help you manage your situation effectively? Check out our new Partner Mood Forecaster to stay ahead of her cycle zones, and our Shareable Content to spread awareness.",
     sender: 'bot',
     timestamp: new Date(),
   },
@@ -14,8 +14,8 @@ export const SUGGESTION_TOPICS = [
   "Managing medical appointments efficiently",
   "Communication strategies during health crises",
   "Creating effective medication routines",
-  "Tracking partner's menstrual cycle",
+  "Using the Partner Mood Forecaster",
   "Balancing support with independence",
   "Navigating the healthcare system effectively",
-  "Sharing health information with others"
+  "Being a hero during her Red Zone"
 ];

@@ -31,7 +31,7 @@ const Chat = () => {
                   className="mx-auto"
                 >
                   <Calendar className="mr-2 h-4 w-4" />
-                  Partner Cycle Tracker
+                  Partner Mood Forecaster
                 </Button>
               </Link>
               <Link to="/shareable-content">

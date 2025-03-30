@@ -20,9 +20,9 @@ const CycleTrackerPage = () => {
             transition={{ duration: 0.5 }}
             className="text-center mb-4"
           >
-            <h1 className="text-3xl font-bold mb-2">Partner Cycle Tracker</h1>
+            <h1 className="text-3xl font-bold mb-2">Partner Mood Forecaster</h1>
             <p className="text-foreground/70 mb-4">
-              Track her cycle to better support her health needs
+              Stay one step ahead and be the hero she needs
             </p>
             <Link to="/shareable-content">
               <Button 

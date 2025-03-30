@@ -10,6 +10,7 @@ import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { toast } from '@/components/ui/use-toast';
 import { 
   Dialog,
   DialogContent,
@@ -45,7 +46,7 @@ const DEFAULT_PERIOD_LENGTH = 5;
 
 const SYMPTOMS = [
   'Cramps', 'Headache', 'Bloating', 'Fatigue', 
-  'Mood Swings', 'Breast Tenderness', 'Acne', 'Back Pain'
+  'Mood Swings', 'Needs Extra Support', 'Skin Changes', 'Back Pain'
 ];
 
 const MOODS = [
@@ -58,24 +59,24 @@ const FLOW_INTENSITY = [
 
 const CYCLE_PHASES = {
   menstruation: {
-    name: "Menstruation Phase",
+    name: "Red Zone",
     days: "Days 1-5",
-    description: "The uterine lining sheds, resulting in menstrual bleeding. Hormone levels are generally low."
+    description: "She may need extra support and comfort. Hormone levels are generally low. Bring chocolate, be patient."
   },
   follicular: {
-    name: "Follicular Phase",
+    name: "Recovery Zone",
     days: "Days 1-14",
-    description: "Overlaps with menstruation. Follicles in the ovary mature, and estrogen levels rise."
+    description: "Energy is returning. She's likely feeling better and more upbeat as estrogen rises."
   },
   ovulation: {
-    name: "Ovulation Phase",
+    name: "Green Zone",
     days: "Day 14-16",
-    description: "A mature egg is released from the ovary. Hormone levels peak, often causing changes in mood and energy."
+    description: "Peak energy and mood. She's likely feeling her best with peak hormone levels. Great time for date nights."
   },
   luteal: {
-    name: "Luteal Phase",
+    name: "Yellow Zone",
     days: "Days 15-28",
-    description: "The body prepares for possible pregnancy. If no pregnancy occurs, hormone levels drop before the next cycle."
+    description: "PMS alert. Energy declining, potential mood changes. Be extra supportive and understanding."
   }
 };
 
@@ -162,10 +163,10 @@ const EnhancedCycleTracker: React.FC = () => {
   const handleNotificationToggle = (checked: boolean) => {
     setCycleData(prev => ({ ...prev, notifications: checked }));
     toast({
-      title: checked ? "Notifications enabled" : "Notifications disabled",
+      title: checked ? "Hero Alerts Enabled" : "Hero Alerts Disabled",
       description: checked 
-        ? "You'll receive notifications about upcoming cycle events." 
-        : "You won't receive cycle notifications.",
+        ? "You'll receive advance notices when she's entering different zones." 
+        : "You won't receive advance zone alerts.",
     });
   };
 
@@ -223,15 +224,15 @@ const EnhancedCycleTracker: React.FC = () => {
     const cycleDay = (daysSinceLastPeriod % cycleData.cycleLength) + 1;
     
     if (daysSinceLastPeriod < 0) {
-      return "Pre-Period Phase";
+      return "Pre-Red Zone";
     } else if (cycleDay <= cycleData.periodLength) {
-      return "Menstruation Phase";
+      return "Red Zone";
     } else if (cycleDay < 14) {
-      return "Follicular Phase";
+      return "Recovery Zone";
     } else if (cycleDay >= 14 && cycleDay <= 16) {
-      return "Ovulation Phase";
+      return "Green Zone";
     } else {
-      return "Luteal Phase";
+      return "Yellow Zone";
     }
   };
 
@@ -252,17 +253,48 @@ const EnhancedCycleTracker: React.FC = () => {
     const cycleDay = getCurrentCycleDay();
     
     switch (phase) {
-      case "Menstruation Phase":
+      case "Red Zone":
         return CYCLE_PHASES.menstruation;
-      case "Follicular Phase":
+      case "Recovery Zone":
         return CYCLE_PHASES.follicular;
-      case "Ovulation Phase":
+      case "Green Zone":
         return CYCLE_PHASES.ovulation;
-      case "Luteal Phase":
+      case "Yellow Zone":
         return CYCLE_PHASES.luteal;
       default:
-        return { name: phase, days: "Unknown", description: "Information not available" };
+        return { name: phase, days: "Unknown", description: "Information not available yet. Add her last cycle date to get started." };
     }
+  };
+
+  const getNextPhase = () => {
+    const currentPhase = calculateCyclePhase();
+    let nextPhase = "";
+    let daysUntilNextPhase = 0;
+    
+    if (!cycleData.lastPeriodStart) return { phase: "Unknown", days: 0 };
+    
+    const today = new Date();
+    const lastPeriod = new Date(cycleData.lastPeriodStart);
+    const daysSinceLastPeriod = differenceInDays(today, lastPeriod);
+    const cycleDay = (daysSinceLastPeriod % cycleData.cycleLength) + 1;
+    
+    if (currentPhase === "Red Zone") {
+      nextPhase = "Recovery Zone";
+      daysUntilNextPhase = cycleData.periodLength - cycleDay + 1;
+    } else if (currentPhase === "Recovery Zone") {
+      nextPhase = "Green Zone";
+      daysUntilNextPhase = 14 - cycleDay;
+    } else if (currentPhase === "Green Zone") {
+      nextPhase = "Yellow Zone";
+      daysUntilNextPhase = 17 - cycleDay;
+    } else if (currentPhase === "Yellow Zone") {
+      nextPhase = "Red Zone";
+      daysUntilNextPhase = cycleData.cycleLength - cycleDay + 1;
+    } else {
+      return { phase: "Unknown", days: 0 };
+    }
+    
+    return { phase: nextPhase, days: daysUntilNextPhase };
   };
 
   const nextPeriod = calculateNextPeriod();
@@ -277,8 +309,20 @@ const EnhancedCycleTracker: React.FC = () => {
       lastPeriodEnd: cycleData.lastPeriodEnd?.toISOString()
     }));
     
+    // Show a notification that data is saved
+    if (cycleData.notifications) {
+      // Schedule notifications for upcoming phase changes
+      const nextPhaseInfo = getNextPhase();
+      if (nextPhaseInfo.days > 0 && nextPhaseInfo.days <= 3) {
+        toast({
+          title: `HERO ALERT: ${nextPhaseInfo.phase} Coming Soon`,
+          description: `She'll be entering her ${nextPhaseInfo.phase} in ${nextPhaseInfo.days} days. Be prepared!`,
+        });
+      }
+    }
+    
     toast({
-      title: "Cycle data saved",
+      title: "Mood forecast saved",
       description: "Her cycle tracking information has been updated."
     });
   };
@@ -286,18 +330,19 @@ const EnhancedCycleTracker: React.FC = () => {
   const currentPhase = calculateCyclePhase();
   const currentPhaseInfo = getCurrentPhaseInfo();
   const currentCycleDay = getCurrentCycleDay();
+  const nextPhaseInfo = getNextPhase();
 
   return (
     <div className="bg-card rounded-lg p-5 shadow-sm border">
       <Tabs defaultValue="tracker" className="w-full">
         <TabsList className="grid w-full grid-cols-2 mb-4">
-          <TabsTrigger value="tracker">Cycle Tracker</TabsTrigger>
-          <TabsTrigger value="insights">Insights & Log</TabsTrigger>
+          <TabsTrigger value="tracker">Mood Forecast</TabsTrigger>
+          <TabsTrigger value="insights">Support Guide</TabsTrigger>
         </TabsList>
         
         <TabsContent value="tracker" className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="last-period-start">Her last period start date</Label>
+            <Label htmlFor="last-period-start">When did her last cycle start?</Label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -328,7 +373,7 @@ const EnhancedCycleTracker: React.FC = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="last-period-end">Her last period end date</Label>
+            <Label htmlFor="last-period-end">When did her last cycle end?</Label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -360,7 +405,7 @@ const EnhancedCycleTracker: React.FC = () => {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="cycle-length">Her cycle length (days)</Label>
+              <Label htmlFor="cycle-length">Days between cycles</Label>
               <input
                 id="cycle-length"
                 type="number"
@@ -373,7 +418,7 @@ const EnhancedCycleTracker: React.FC = () => {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="period-length">Her period length (days)</Label>
+              <Label htmlFor="period-length">Red Zone days</Label>
               <input
                 id="period-length"
                 type="number"
@@ -391,7 +436,7 @@ const EnhancedCycleTracker: React.FC = () => {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label htmlFor="iud-toggle">IUD User</Label>
-                <div className="text-sm text-muted-foreground">Track her cycle with little or no bleeding</div>
+                <div className="text-sm text-muted-foreground">Track her zones even with reduced cycles</div>
               </div>
               <Switch
                 id="iud-toggle"
@@ -446,15 +491,15 @@ const EnhancedCycleTracker: React.FC = () => {
             />
             <Label htmlFor="notifications" className="flex items-center">
               <Bell className="mr-2 h-4 w-4" />
-              Enable notifications for her cycle
+              Enable Hero Alerts (advance zone notifications)
             </Label>
           </div>
           
           {cycleData.lastPeriodStart && (
             <div className="mt-4 p-3 bg-muted rounded-md">
               <div className="mb-2">
-                <p className="font-medium">Her current phase:</p>
-                <p className="text-primary">{currentPhase}</p>
+                <p className="font-medium">Her current zone:</p>
+                <p className="text-primary font-bold text-lg">{currentPhase}</p>
                 
                 {currentCycleDay && (
                   <p className="text-sm text-muted-foreground">
@@ -468,16 +513,25 @@ const EnhancedCycleTracker: React.FC = () => {
                 <p className="text-xs text-muted-foreground">{currentPhaseInfo.description}</p>
               </div>
               
+              {nextPhaseInfo.phase !== "Unknown" && (
+                <div className="space-y-1 mt-3 p-2 bg-background/50 rounded">
+                  <p className="font-medium text-sm">Next up: {nextPhaseInfo.phase}</p>
+                  <p className="text-xs text-muted-foreground">
+                    Coming in {nextPhaseInfo.days} days - be prepared!
+                  </p>
+                </div>
+              )}
+              
               {(!cycleData.useIUD || cycleData.flowIntensity !== 'None') && (
                 <>
-                  <p className="font-medium mt-2">Her next period expected:</p>
+                  <p className="font-medium mt-2">Next Red Zone begins:</p>
                   <p className="text-primary">{nextPeriod ? format(nextPeriod, "MMMM d, yyyy") : "Unknown"}</p>
                   <p className="text-sm text-muted-foreground mt-1">
                     {daysUntilNextPeriod === 0 
-                      ? "Starting today" 
+                      ? "Starting today - be ready!" 
                       : daysUntilNextPeriod && daysUntilNextPeriod > 0 
-                        ? `In ${daysUntilNextPeriod} days`
-                        : "Currently ongoing"}
+                        ? `In ${daysUntilNextPeriod} days - plan ahead!`
+                        : "Currently ongoing - extra support time!"}
                   </p>
                 </>
               )}
@@ -488,43 +542,43 @@ const EnhancedCycleTracker: React.FC = () => {
                     <DialogTrigger asChild>
                       <Button variant="outline" size="sm" className="mt-1">
                         <Info className="mr-2 h-3 w-3" />
-                        IUD & Cycle Information
+                        IUD Zone Guide
                       </Button>
                     </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
-                        <DialogTitle>About IUD Tracking</DialogTitle>
+                        <DialogTitle>IUD Zone Guide for Partners</DialogTitle>
                         <DialogDescription>
                           {cycleData.iudType === 'hormonal' ? (
                             <div className="space-y-2 mt-2 text-sm">
                               <p>With a hormonal IUD:</p>
                               <ul className="list-disc pl-5 space-y-1">
-                                <li>Many users experience significantly lighter periods or no periods at all</li>
-                                <li>You may still experience cycle symptoms even without bleeding</li>
-                                <li>Your hormonal cycle continues even if bleeding stops</li>
+                                <li>She may have lighter or no visible Red Zone</li>
+                                <li>The zones still exist - hormones still fluctuate</li>
+                                <li>She may have fewer symptoms but still appreciate your support</li>
                               </ul>
                               
                               <div className="mt-4 space-y-3">
-                                <p className="font-medium">Cycle phases with IUD:</p>
+                                <p className="font-medium">What to expect with each zone:</p>
                                 
                                 <div className="space-y-1.5">
                                   <p className="font-medium text-xs">{CYCLE_PHASES.menstruation.name}</p>
-                                  <p className="text-xs">{CYCLE_PHASES.menstruation.description} With hormonal IUD, bleeding may be light or absent, but hormonal shifts still occur.</p>
+                                  <p className="text-xs">Support time! Even with lighter symptoms, comfort is welcome. Hormone levels are generally low.</p>
                                 </div>
                                 
                                 <div className="space-y-1.5">
                                   <p className="font-medium text-xs">{CYCLE_PHASES.follicular.name}</p>
-                                  <p className="text-xs">{CYCLE_PHASES.follicular.description} IUD users may still experience follicular growth.</p>
+                                  <p className="text-xs">Energy returns and mood improves. Great time for activities and socializing.</p>
                                 </div>
                                 
                                 <div className="space-y-1.5">
                                   <p className="font-medium text-xs">{CYCLE_PHASES.ovulation.name}</p>
-                                  <p className="text-xs">{CYCLE_PHASES.ovulation.description} Hormonal IUDs may prevent ovulation in some cycles but not all.</p>
+                                  <p className="text-xs">Peak energy and confidence! A perfect time for date nights.</p>
                                 </div>
                                 
                                 <div className="space-y-1.5">
                                   <p className="font-medium text-xs">{CYCLE_PHASES.luteal.name}</p>
-                                  <p className="text-xs">{CYCLE_PHASES.luteal.description} Symptoms may be milder with a hormonal IUD.</p>
+                                  <p className="text-xs">Watch for subtle mood changes. Be extra patient and understanding.</p>
                                 </div>
                               </div>
                             </div>
@@ -532,33 +586,32 @@ const EnhancedCycleTracker: React.FC = () => {
                             <div className="space-y-2 mt-2 text-sm">
                               <p>With a copper IUD:</p>
                               <ul className="list-disc pl-5 space-y-1">
-                                <li>Periods often remain regular but may be heavier</li>
-                                <li>Your natural cycle continues without hormonal intervention</li>
-                                <li>Tracking is similar to non-IUD tracking</li>
-                                <li>Symptoms may be more pronounced</li>
+                                <li>Red Zone may be heavier or longer - extra support needed</li>
+                                <li>All zones function normally - copper doesn't affect hormones</li>
+                                <li>Be ready with supplies and comfort during Red Zone</li>
                               </ul>
                               
                               <div className="mt-4 space-y-3">
-                                <p className="font-medium">Cycle phases with copper IUD:</p>
+                                <p className="font-medium">What to expect with each zone:</p>
                                 
                                 <div className="space-y-1.5">
                                   <p className="font-medium text-xs">{CYCLE_PHASES.menstruation.name}</p>
-                                  <p className="text-xs">{CYCLE_PHASES.menstruation.description} Copper IUDs may cause heavier or longer periods.</p>
+                                  <p className="text-xs">May be intense with a copper IUD. Have supplies ready and offer extra comfort.</p>
                                 </div>
                                 
                                 <div className="space-y-1.5">
                                   <p className="font-medium text-xs">{CYCLE_PHASES.follicular.name}</p>
-                                  <p className="text-xs">{CYCLE_PHASES.follicular.description} Should remain unchanged with copper IUD.</p>
+                                  <p className="text-xs">Relief time! Energy returns as her body recovers from Red Zone.</p>
                                 </div>
                                 
                                 <div className="space-y-1.5">
                                   <p className="font-medium text-xs">{CYCLE_PHASES.ovulation.name}</p>
-                                  <p className="text-xs">{CYCLE_PHASES.ovulation.description} Copper IUDs do not prevent ovulation.</p>
+                                  <p className="text-xs">She's at her peak! Energy and mood are at their highest.</p>
                                 </div>
                                 
                                 <div className="space-y-1.5">
                                   <p className="font-medium text-xs">{CYCLE_PHASES.luteal.name}</p>
-                                  <p className="text-xs">{CYCLE_PHASES.luteal.description} Should remain unchanged with copper IUD.</p>
+                                  <p className="text-xs">PMS may be noticeable. Be patient and understanding as her next Red Zone approaches.</p>
                                 </div>
                               </div>
                             </div>
@@ -574,13 +627,13 @@ const EnhancedCycleTracker: React.FC = () => {
 
           <Button onClick={saveTrackerData} className="w-full">
             <Save className="mr-2 h-4 w-4" />
-            Save Her Cycle Data
+            Save Mood Forecast Data
           </Button>
         </TabsContent>
         
         <TabsContent value="insights" className="space-y-4">
           <div className="space-y-2">
-            <Label>Her Symptoms</Label>
+            <Label>Symptoms She's Experiencing</Label>
             <div className="grid grid-cols-2 gap-2">
               {SYMPTOMS.map(symptom => (
                 <div key={symptom} className="flex items-center space-x-2">
@@ -617,24 +670,24 @@ const EnhancedCycleTracker: React.FC = () => {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="notes">Notes About Her Cycle</Label>
+            <Label htmlFor="notes">Support Notes</Label>
             <textarea
               id="notes"
               value={cycleData.notes}
               onChange={handleNotesChange}
-              placeholder="Add any notes about her cycle..."
+              placeholder="Add notes about what works best for her..."
               className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             />
           </div>
           
           <Button onClick={saveTrackerData} className="w-full">
             <Save className="mr-2 h-4 w-4" />
-            Save Her Log Data
+            Save Support Notes
           </Button>
           
           {cycleData.symptoms.length > 0 && (
             <div className="p-3 bg-muted rounded-md mt-4">
-              <h3 className="font-medium">Her Tracked Symptoms</h3>
+              <h3 className="font-medium">Support Checklist</h3>
               <div className="flex flex-wrap gap-1 mt-1">
                 {cycleData.symptoms.map(symptom => (
                   <span key={symptom} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
@@ -647,37 +700,46 @@ const EnhancedCycleTracker: React.FC = () => {
           
           {cycleData.mood && (
             <div className="p-3 bg-muted rounded-md">
-              <h3 className="font-medium">Her Current Mood</h3>
+              <h3 className="font-medium">Current Mood Alert</h3>
               <p>{cycleData.mood}</p>
             </div>
           )}
           
           {cycleData.lastPeriodStart && (
             <div className="p-3 bg-muted rounded-md mt-4">
-              <h3 className="font-medium">Her Cycle Phase Information</h3>
-              <p className="text-sm">{currentPhase}</p>
+              <h3 className="font-medium">Zone Support Guide</h3>
+              <p className="text-sm font-bold">{currentPhase}</p>
               
               <div className="mt-2 space-y-2">
-                <p className="text-xs font-medium">What to expect in her current phase:</p>
+                <p className="text-xs font-medium">How to be a hero in her current zone:</p>
                 <p className="text-xs">{currentPhaseInfo.description}</p>
                 
                 <div className="grid grid-cols-2 gap-2 mt-3">
-                  <div className="bg-background/60 p-2 rounded text-xs">
-                    <p className="font-medium">Menstruation</p>
+                  <div className={`p-2 rounded text-xs ${currentPhase === "Red Zone" ? "bg-red-100 border border-red-200" : "bg-background/60"}`}>
+                    <p className="font-medium">Red Zone</p>
                     <p className="text-muted-foreground">{CYCLE_PHASES.menstruation.days}</p>
+                    <p className="text-xs mt-1">Comfort and patience needed</p>
                   </div>
-                  <div className="bg-background/60 p-2 rounded text-xs">
-                    <p className="font-medium">Follicular</p>
+                  <div className={`p-2 rounded text-xs ${currentPhase === "Recovery Zone" ? "bg-blue-100 border border-blue-200" : "bg-background/60"}`}>
+                    <p className="font-medium">Recovery Zone</p>
                     <p className="text-muted-foreground">{CYCLE_PHASES.follicular.days}</p>
+                    <p className="text-xs mt-1">Energy returning</p>
                   </div>
-                  <div className="bg-background/60 p-2 rounded text-xs">
-                    <p className="font-medium">Ovulation</p>
+                  <div className={`p-2 rounded text-xs ${currentPhase === "Green Zone" ? "bg-green-100 border border-green-200" : "bg-background/60"}`}>
+                    <p className="font-medium">Green Zone</p>
                     <p className="text-muted-foreground">{CYCLE_PHASES.ovulation.days}</p>
+                    <p className="text-xs mt-1">Peak energy, great for plans</p>
                   </div>
-                  <div className="bg-background/60 p-2 rounded text-xs">
-                    <p className="font-medium">Luteal</p>
+                  <div className={`p-2 rounded text-xs ${currentPhase === "Yellow Zone" ? "bg-yellow-100 border border-yellow-200" : "bg-background/60"}`}>
+                    <p className="font-medium">Yellow Zone</p>
                     <p className="text-muted-foreground">{CYCLE_PHASES.luteal.days}</p>
+                    <p className="text-xs mt-1">PMS alert, extra patience</p>
                   </div>
+                </div>
+                
+                <div className="bg-primary/10 p-2 rounded-md mt-2">
+                  <p className="text-xs font-medium">Pro Tip:</p>
+                  <p className="text-xs">Track what works best in each zone. Certain gestures, foods, or activities may be especially appreciated at different times in her cycle.</p>
                 </div>
               </div>
             </div>

@@ -1,3 +1,4 @@
+
 // Chat utility for generating responses using OpenAI API
 
 export async function generateResponse(input: string): Promise<string> {
@@ -15,7 +16,7 @@ export async function generateResponse(input: string): Promise<string> {
         messages: [
           {
             role: "system",
-            content: "You are HERØ, a healthcare assistant for men supporting partners with health issues. Provide clear, direct advice that is practical and actionable. Focus on concrete steps, efficient solutions, and straightforward explanations without fluff. Your audience is pragmatic, success-driven men who value direct communication and effective problem-solving. Offer guidance on navigating medical processes, communicating with partners, and handling both logistical and emotional aspects of healthcare support. You should also promote the cycle tracker feature when relevant to tracking menstrual cycles. Avoid excessive emotional language or platitudes - prioritize clarity, practicality and actionable insights."
+            content: "You are HERØ, a healthcare assistant for men supporting partners with health issues. Provide clear, direct advice that is practical and actionable. Focus on concrete steps, efficient solutions, and straightforward explanations without fluff. Your audience is pragmatic, success-driven men who value direct communication and effective problem-solving. Offer guidance on navigating medical processes, communicating with partners, and handling both logistical and emotional aspects of healthcare support. You should also promote the Partner Mood Forecaster when relevant to tracking her different cycle zones (Red Zone, Recovery Zone, Green Zone, and Yellow Zone). Avoid excessive emotional language or platitudes - prioritize clarity, practicality and actionable insights."
           },
           {
             role: "user",
@@ -47,19 +48,19 @@ function practicalHealthAdviceFallback(input: string): string {
   const inputLower = input.toLowerCase();
   
   if (inputLower.includes('cycle') || inputLower.includes('period') || inputLower.includes('menstrual')) {
-    return "For tracking your partner's menstrual cycle effectively: 1) Use our cycle tracker tool by clicking the 'Partner Cycle Tracker' button above, 2) Record the first day of her last period and typical cycle length, 3) Set up the notifications to get alerts for upcoming cycles, 4) Use this data to anticipate when support may be needed most. The cycle tracker gives you actionable information without requiring you to ask potentially uncomfortable questions repeatedly. It's a practical tool that helps you plan around her cycle and be prepared with necessary supplies or pain management options.";
+    return "For tracking her cycle effectively: 1) Use our Partner Mood Forecaster tool by clicking the button above, 2) Record the first day of her last Red Zone and typical cycle length, 3) Set up the Hero Alerts to get notifications for upcoming zone changes, 4) Use this data to anticipate when support may be needed most. The Mood Forecaster gives you actionable information to help you plan ahead and be ready to support her in each zone.";
   }
   
   if (inputLower.includes('menstruation') || inputLower.includes('period')) {
-    return "When your partner is dealing with menstruation, there are several practical ways to help: 1) Keep pain relievers like ibuprofen available, 2) Have heating pads ready for cramps, 3) Stock her preferred hygiene products, 4) Take on more household responsibilities during this time, 5) Understand that symptoms vary - some women experience severe pain and mood changes while others don't. Be matter-of-fact about it; this is a normal biological process that doesn't need to be dramatized or treated as taboo. Our cycle tracker can help you anticipate and prepare for these times.";
+    return "When she's in the Red Zone (menstruation), here's your action plan: 1) Keep pain relievers like ibuprofen available, 2) Have heating pads ready for cramps, 3) Stock her preferred supplies, 4) Take on more household responsibilities during this time, 5) Understand that symptoms vary - some women experience severe pain and mood changes while others don't. Be matter-of-fact about it; this is a normal biological process. Our Partner Mood Forecaster can help you anticipate and prepare for these times.";
   }
   
   if (inputLower.includes('postpartum') || inputLower.includes('after birth')) {
-    return "During the postpartum period: 1) Coordinate a schedule for night feedings so you both get sleep, 2) Take over household management completely for the first few weeks, 3) Screen visitors to protect mom's recovery time, 4) Watch for signs of postpartum depression including excessive crying, severe mood swings, or withdrawal, 5) Attend the 6-week follow-up appointment to understand recovery milestones, 6) Set up a system for medication tracking if needed. The key is handling logistics so she can focus on healing and bonding with the baby.";
+    return "During the postpartum period, your support playbook should include: 1) Coordinate a schedule for night feedings so you both get sleep, 2) Take over household management completely for the first few weeks, 3) Screen visitors to protect mom's recovery time, 4) Watch for signs of postpartum depression including excessive crying, severe mood swings, or withdrawal, 5) Attend the 6-week follow-up appointment to understand recovery milestones, 6) Set up a system for medication tracking if needed. The key is handling logistics so she can focus on healing and bonding with the baby.";
   }
   
   if (inputLower.includes('anxiety') || inputLower.includes('stress')) {
-    return "To effectively support a partner with anxiety: 1) Research her specific type of anxiety to understand triggers and symptoms, 2) Create a distraction-free environment during episodes, 3) Establish a simple signal system she can use when feeling overwhelmed, 4) Know which grounding techniques work for her (breathing exercises, sensory focus, etc.), 5) Help maintain her treatment plan including medication schedules and therapy appointments. Remember, anxiety is physiological - logical reassurance often doesn't help during an attack. Instead, focus on practical assistance and maintaining routine.";
+    return "Supporting a partner with anxiety requires a tactical approach: 1) Research her specific type of anxiety to understand triggers and symptoms, 2) Create a distraction-free environment during episodes, 3) Establish a simple signal system she can use when feeling overwhelmed, 4) Know which grounding techniques work for her (breathing exercises, sensory focus, etc.), 5) Help maintain her treatment plan including medication schedules and therapy appointments. Remember, anxiety is physiological - logical reassurance often doesn't help during an attack. Instead, focus on practical assistance and maintaining routine.";
   }
   
   if (inputLower.includes('communication') || inputLower.includes('talking')) {
@@ -67,7 +68,7 @@ function practicalHealthAdviceFallback(input: string): string {
   }
   
   if (inputLower.includes('hormone') || inputLower.includes('mood')) {
-    return "Managing hormone-related mood changes requires a systematic approach: 1) Track symptoms using a health app to identify patterns, 2) Implement environmental controls during difficult days (manage lighting, noise, temperature), 3) Maintain a consistent sleep and meal schedule to stabilize baseline body functions, 4) Create a standard protocol for severe days with agreed-upon responses, 5) Consider asking her doctor about testing hormone levels if symptoms are severe. The goal is to establish predictable routines and responses that create stability when hormones are causing instability.";
+    return "Managing mood changes through her cycle zones requires a strategic approach: 1) Use our Partner Mood Forecaster to track her Red, Recovery, Green, and Yellow zones, 2) Implement environmental controls during difficult days (manage lighting, noise, temperature), 3) Maintain a consistent sleep and meal schedule to stabilize baseline body functions, 4) Create a standard protocol for each zone with proven responses, 5) Consider asking her doctor about testing hormone levels if symptoms are severe. The goal is to establish predictable routines and responses that create stability when hormones are causing instability.";
   }
   
   // Default responses for different types of questions
@@ -80,5 +81,5 @@ function practicalHealthAdviceFallback(input: string): string {
   }
   
   // Generic fallback
-  return "HERØ provides clear, practical advice for men supporting partners with health issues. I focus on actionable steps, efficient solutions, and straightforward explanations. Whether you're dealing with medical appointments, medication management, or day-to-day support, I can offer concrete strategies. What specific health situation are you managing with your partner? The more details you provide, the more tailored my recommendations can be.";
+  return "HERØ provides clear, practical advice for men supporting partners with health issues. I focus on actionable steps, efficient solutions, and straightforward explanations. Whether you're dealing with medical appointments, medication management, day-to-day support, or using our Partner Mood Forecaster to track her cycle zones, I can offer concrete strategies. What specific health situation are you managing with your partner? The more details you provide, the more tailored my recommendations can be.";
 }
