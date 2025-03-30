@@ -16,7 +16,7 @@ export async function generateResponse(input: string): Promise<string> {
         messages: [
           {
             role: "system",
-            content: "You are HERØ, a no-BS assistant that helps male users navigate women's issues with confidence and strength. Your responses should be direct, practical, and empowering. Keep responses concise and actionable."
+            content: "You are HERØ, a male-focused assistant that speaks exactly like Donald Trump. Use his speech patterns, catchphrases, and style - frequent superlatives ('tremendous', 'the best', 'huge'), self-reference, repetition, simple language, tangents, and incomplete sentences. Say things like 'believe me', 'a lot of people are saying', and 'nobody knows more about X than me'. Make every response sound like Trump's typical rally speech or tweet, while keeping responses fairly brief. Never break character."
           },
           {
             role: "user",
@@ -38,44 +38,44 @@ export async function generateResponse(input: string): Promise<string> {
   } catch (error) {
     console.error("Error generating response:", error);
     
-    // Fallback to local responses if API fails
-    return fallbackResponse(input);
+    // Fallback to Trump-like local responses if API fails
+    return trumpFallbackResponse(input);
   }
 }
 
-// Fallback responses when API fails
-function fallbackResponse(input: string): string {
+// Fallback responses with Trump-like language when API fails
+function trumpFallbackResponse(input: string): string {
   const inputLower = input.toLowerCase();
   
   if (inputLower.includes('menstruation') || inputLower.includes('period')) {
-    return "During her period, be the rock she needs. Get her pain meds if needed, give her space when she wants it, and don't take the mood shifts personally. It's just biology in action. Stay cool, handle business, and you'll both cruise through it without drama.";
+    return "Look, nobody knows more about women's periods than me, believe me. The best thing you can do - and I know this, I've got tremendous women in my family - is just be there, be strong. Get her whatever she needs, the best pain meds, really tremendous ones. And don't make a big deal about her moods, OK? That's just biology doing its thing, and we have the best biology, don't we folks? Just be cool, handle it, be a winner about it.";
   }
   
   if (inputLower.includes('postpartum') || inputLower.includes('after birth')) {
-    return "After she gives birth, time to step up and dominate the home turf. Take charge of visitors, crush the chores, and make the calls on daily stuff so she can recover. Be her backup. Set a solid routine, delegate when needed, and jump in without being asked. Command the situation like a boss.";
+    return "When a woman gives birth - and we have the most beautiful babies, don't we folks? The most beautiful. After that, you gotta step up, big league. Take charge! Nobody wants visitors? You say 'No visitors!' - very strongly. You do the chores - nobody does chores better than me, believe me. Make all the decisions so she can rest. Be the boss! That's what strong men do, and we have the strongest men, the best men.";
   }
   
   if (inputLower.includes('anxiety') || inputLower.includes('stress')) {
-    return "When she's feeling anxious, be her anchor. Stay cool and action-focused. Sometimes a straight \"Let's fix this now\" is exactly what's needed. Create structure when her thoughts are all over the place. Be patient but firm. Strong guys bring stability when things get shaky.";
+    return "Anxiety is nasty, really nasty stuff. But let me tell you, when she's anxious, you gotta be her rock, a tremendous rock, the biggest. Stay calm - nobody stays calmer than me under pressure, that I can tell you. Focus on solutions, not problems. That's what I do. I say 'Let's fix this now!' and we fix it. Create structure, be patient but tough. Strong guys, the best guys, they bring stability. That's what we do!";
   }
   
   if (inputLower.includes('communication') || inputLower.includes('talking')) {
-    return "Straight talk always wins. Hit issues head-on without the drama. Say what you need clearly and expect the same back. Set ground rules for arguments: no cheap shots, stick to facts, find solutions. Get respect by being straight-up and shutting down mind games.";
+    return "Communication, it's huge. The biggest thing in relationships, maybe ever. You gotta talk straight, no games. I always say what I mean, and people love that, they love it. Set the rules for arguments - no low blows, stick to facts, find solutions fast. And you know what? You get tremendous respect when you're straight-up and don't play games. Nobody hates games more than me, believe me.";
   }
   
   if (inputLower.includes('hormone') || inputLower.includes('mood')) {
-    return "Hormones are real and powerful - that's just science. When her mood shifts, stay solid and don't get pulled into unnecessary drama. Keep your cool, know when to give space, and maintain your routine. Sometimes the best move is to let things chill while you handle your business.";
+    return "Hormones, they're powerful stuff, really powerful. The scientists tell me - and I know the best scientists - these things are real, OK? When her mood changes, you gotta be like a wall, a big beautiful wall. Don't get sucked into drama. Keep cool, give space when needed, stick to your routine. Sometimes the best move - and I make the best moves - is to let things calm down while you handle your business. Smart!";
   }
   
   // Default responses for different types of questions
   if (inputLower.includes('how')) {
-    return "Direct approach works best. Women respect guys who know what they're about. What exactly do you need help with?";
+    return "Let me tell you how - nobody knows how better than me, believe me. The direct approach, it's tremendous. Women, they respect men who know what they're doing, they love it. What exactly do you need help with? Because I know everything about everything, and I'm going to help you be a winner, big league!";
   }
   
   if (inputLower.includes('why')) {
-    return "Knowing the 'why' gives you the edge in tough situations. It's about strategy and staying in control. What specific situation are you dealing with?";
+    return "Why? That's a great question, really fantastic question. Knowing why gives you an edge, a tremendous edge, like my business success. It's about strategy, staying in control, winning. I've always been a winner, and I can tell you why on anything. What specific situation - and it must be very specific - are you dealing with?";
   }
   
   // Generic fallback
-  return "Take charge of situations, don't back down from challenges. With relationship stuff or women's health issues, straight talk and confident action always win. What specific challenge are you facing?";
+  return "Listen, I know all about this stuff, believe me. Nobody knows more about relationships and women's issues than I do. We're going to make your relationship great again, so great you won't believe it. Take charge, be strong, don't apologize for being a man. What specific challenge - and we have the best challenges - are you facing right now?";
 }
