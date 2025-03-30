@@ -1,8 +1,11 @@
 
 import { motion } from 'framer-motion';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Share2 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import EnhancedCycleTracker from '@/components/EnhancedCycleTracker';
+import { Button } from '@/components/ui/button';
 
 const CycleTrackerPage = () => {
   return (
@@ -18,9 +21,18 @@ const CycleTrackerPage = () => {
             className="text-center mb-4"
           >
             <h1 className="text-3xl font-bold mb-2">Partner Cycle Tracker</h1>
-            <p className="text-foreground/70 mb-6">
+            <p className="text-foreground/70 mb-4">
               Track her cycle to better support her health needs
             </p>
+            <Link to="/shareable-content">
+              <Button 
+                variant="outline" 
+                className="mx-auto"
+              >
+                <Share2 className="mr-2 h-4 w-4" />
+                Check out shareable content
+              </Button>
+            </Link>
           </motion.div>
           
           <motion.div

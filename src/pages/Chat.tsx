@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { Calendar } from 'lucide-react';
+import { Calendar, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -24,15 +24,26 @@ const Chat = () => {
             <p className="text-foreground/70 mb-4">
               Get practical, actionable advice for supporting your partner's health needs effectively.
             </p>
-            <Link to="/cycle-tracker">
-              <Button 
-                variant="outline" 
-                className="mx-auto"
-              >
-                <Calendar className="mr-2 h-4 w-4" />
-                Partner Cycle Tracker
-              </Button>
-            </Link>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link to="/cycle-tracker">
+                <Button 
+                  variant="outline" 
+                  className="mx-auto"
+                >
+                  <Calendar className="mr-2 h-4 w-4" />
+                  Partner Cycle Tracker
+                </Button>
+              </Link>
+              <Link to="/shareable-content">
+                <Button 
+                  variant="outline" 
+                  className="mx-auto"
+                >
+                  <Share2 className="mr-2 h-4 w-4" />
+                  Shareable Content
+                </Button>
+              </Link>
+            </div>
           </motion.div>
           
           <motion.div

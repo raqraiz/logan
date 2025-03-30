@@ -10,6 +10,7 @@ import Chat from "./pages/Chat";
 import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
 import CycleTracker from "./pages/CycleTracker";
+import ShareableContent from "./pages/ShareableContent";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => {
               <Route path="/chat" element={<Chat />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/cycle-tracker" element={<CycleTracker />} />
+              <Route path="/shareable-content" element={<ShareableContent />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
