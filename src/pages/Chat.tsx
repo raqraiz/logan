@@ -18,7 +18,7 @@ const Chat = () => {
           >
             <h1 className="text-3xl font-bold mb-2">HERØ Chat</h1>
             <p className="text-foreground/70">
-              Get straight answers and practical advice on how to handle women's issues like a boss.
+              Get practical, actionable advice for supporting your partner's health needs effectively.
             </p>
           </motion.div>
           
@@ -37,3 +37,4 @@ const Chat = () => {
 };
 
 export default Chat;
+

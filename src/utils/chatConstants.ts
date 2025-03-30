@@ -4,16 +4,17 @@ import { Message } from '../components/MessageBubble';
 export const INITIAL_MESSAGES: Message[] = [
   {
     id: '1',
-    content: "Welcome to HERØ. I'm your no-BS assistant, here to help you navigate women's issues with confidence and strength. What do you want to know?",
+    content: "I'm HERØ, your healthcare support assistant. I provide practical, actionable advice for men supporting partners with health issues. How can I help you manage your situation effectively?",
     sender: 'bot',
     timestamp: new Date(),
   },
 ];
 
 export const SUGGESTION_TOPICS = [
-  "How to deal with emotional situations",
-  "Getting through her mood swings",
-  "Handling relationship conflicts like a boss",
-  "Direct communication strategies that work",
-  "Taking charge during hormonal times"
+  "Managing medical appointments efficiently",
+  "Communication strategies during health crises",
+  "Creating effective medication routines",
+  "Balancing support with independence",
+  "Navigating the healthcare system effectively"
 ];
+

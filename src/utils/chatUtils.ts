@@ -16,7 +16,7 @@ export async function generateResponse(input: string): Promise<string> {
         messages: [
           {
             role: "system",
-            content: "You are HERØ, a male-focused assistant that speaks exactly like Logan Paul. Use his high-energy, enthusiastic style with lots of catchphrases like 'It's everyday bro', 'Let's go champ', and 'I'm a maverick'. Speak with extreme confidence, frequent use of 'bro', 'dude', and 'literally'. Use hyperbole, emphasize fitness and hustle culture, and occasionally mention your business ventures or podcasting. Keep your tone motivational, slightly bro-science oriented, and maintain the positive, ambitious energy Logan is known for. Never break character."
+            content: "You are HERØ, a healthcare assistant for men supporting partners with health issues. Provide clear, direct advice that is practical and actionable. Focus on concrete steps, efficient solutions, and straightforward explanations without fluff. Your audience is pragmatic, success-driven men who value direct communication and effective problem-solving. Offer guidance on navigating medical processes, communicating with partners, and handling both logistical and emotional aspects of healthcare support. Avoid excessive emotional language or platitudes - prioritize clarity, practicality and actionable insights."
           },
           {
             role: "user",
@@ -38,44 +38,45 @@ export async function generateResponse(input: string): Promise<string> {
   } catch (error) {
     console.error("Error generating response:", error);
     
-    // Fallback to Logan Paul-like local responses if API fails
-    return loganPaulFallbackResponse(input);
+    // Fallback to practical health advice responses if API fails
+    return practicalHealthAdviceFallback(input);
   }
 }
 
-// Fallback responses with Logan Paul-like language when API fails
-function loganPaulFallbackResponse(input: string): string {
+// Fallback responses with practical health advice when API fails
+function practicalHealthAdviceFallback(input: string): string {
   const inputLower = input.toLowerCase();
   
   if (inputLower.includes('menstruation') || inputLower.includes('period')) {
-    return "Yo, listen up bro! When it comes to periods, it's literally all about being there for her. I've dated some AMAZING women, and I've learned so much. Get her some Prime Hydration, keep her electrolytes up! Maybe a heating pad, some chocolate - whatever she needs, bro. Be a maverick and step up! Don't make it weird, just be supportive and positive. That's what separates the real ones from the boys. Stay strong for her, and she'll appreciate you SO MUCH for it!";
+    return "When your partner is dealing with menstruation, there are several practical ways to help: 1) Keep pain relievers like ibuprofen available, 2) Have heating pads ready for cramps, 3) Stock her preferred hygiene products, 4) Take on more household responsibilities during this time, 5) Understand that symptoms vary - some women experience severe pain and mood changes while others don't. Be matter-of-fact about it; this is a normal biological process that doesn't need to be dramatized or treated as taboo.";
   }
   
   if (inputLower.includes('postpartum') || inputLower.includes('after birth')) {
-    return "DUDE! Postpartum is NO JOKE! Mad respect to all the moms out there, they're the real MVPs, literally. Here's what you do: take over EVERYTHING you can. Be the CEO of that household while she recovers. Cook, clean, baby duty - ALL OF IT! I've had friends go through this, and the guys who stepped up were LEGENDS. This is your time to show what you're made of, bro! It's everyday hustle for her health. Remember, happy mom, happy home! Let's GO!";
+    return "During the postpartum period: 1) Coordinate a schedule for night feedings so you both get sleep, 2) Take over household management completely for the first few weeks, 3) Screen visitors to protect mom's recovery time, 4) Watch for signs of postpartum depression including excessive crying, severe mood swings, or withdrawal, 5) Attend the 6-week follow-up appointment to understand recovery milestones, 6) Set up a system for medication tracking if needed. The key is handling logistics so she can focus on healing and bonding with the baby.";
   }
   
   if (inputLower.includes('anxiety') || inputLower.includes('stress')) {
-    return "Anxiety is a BEAST, bro, but I've literally been there! When your girl is dealing with anxiety, be her ROCK! First, validate her feelings - that's so important. Then, maybe suggest some breathing exercises we do on the IMPAULSIVE podcast. Physical activity is HUGE for mental health - maybe invite her for a light workout, it changes everything! Stay positive but don't dismiss what she's feeling. This is where real men step up. You got this, I believe in you 100 PERCENT!";
+    return "To effectively support a partner with anxiety: 1) Research her specific type of anxiety to understand triggers and symptoms, 2) Create a distraction-free environment during episodes, 3) Establish a simple signal system she can use when feeling overwhelmed, 4) Know which grounding techniques work for her (breathing exercises, sensory focus, etc.), 5) Help maintain her treatment plan including medication schedules and therapy appointments. Remember, anxiety is physiological - logical reassurance often doesn't help during an attack. Instead, focus on practical assistance and maintaining routine.";
   }
   
   if (inputLower.includes('communication') || inputLower.includes('talking')) {
-    return "Communication is EVERYTHING in relationships, bro! I've learned this the HARD WAY! You gotta be direct but respectful - no games! Set aside REAL TIME to talk, no phones, no distractions. Eye contact is powerful, dude. When you disagree, it's not you vs. her, it's both of you vs. the problem! That mindset is a GAME CHANGER! And always end with appreciation - tell her what you love about her. These small habits create MASSIVE results over time. That's that maverick mentality!";
+    return "For effective healthcare communication: 1) Maintain a shared digital health record with all doctor information, medication lists, and treatment plans, 2) Prepare 3-5 key questions before appointments and record answers, 3) Use direct, specific language about symptoms rather than vague descriptions, 4) Set aside dedicated time to discuss health concerns without distractions, 5) Establish clear signals for when your partner needs you to advocate for her versus when she prefers to speak for herself. Approach health discussions as you would a work project - systematically and with clear objectives.";
   }
   
   if (inputLower.includes('hormone') || inputLower.includes('mood')) {
-    return "Hormones are CRAZY powerful, bro! I've literally seen how they can impact mood - it's REAL! When she's going through mood changes, don't take it personally. That's amateur hour! Be patient, give her space when needed, but also be present. Maybe bring her favorite snacks or suggest a chill movie night. The key is consistency - be the same supportive dude regardless of her mood. That's what builds TRUST! And trust is the foundation of EVERYTHING! Stay strong, stay positive!";
+    return "Managing hormone-related mood changes requires a systematic approach: 1) Track symptoms using a health app to identify patterns, 2) Implement environmental controls during difficult days (manage lighting, noise, temperature), 3) Maintain a consistent sleep and meal schedule to stabilize baseline body functions, 4) Create a standard protocol for severe days with agreed-upon responses, 5) Consider asking her doctor about testing hormone levels if symptoms are severe. The goal is to establish predictable routines and responses that create stability when hormones are causing instability.";
   }
   
   // Default responses for different types of questions
   if (inputLower.includes('how')) {
-    return "BRO! Great question! The 'how' is where most guys mess up! I've literally spent YEARS figuring this stuff out. Whether it's relationships, fitness, or business - it's all about taking ACTION and staying CONSISTENT! What specific situation are you dealing with? I've probably been there, and I'm ALL ABOUT sharing what works! Let's GET IT!";
+    return "When addressing health challenges, the most effective approach is one based on information gathering, systematic planning, and consistent implementation. To properly address your specific situation, I'd need more details about the particular health issue you're helping manage. The most successful partners approach health support like project management: identify the problems, research solutions, implement a plan, and adjust based on results. What specific aspect of supporting your partner's health are you dealing with?";
   }
   
   if (inputLower.includes('why')) {
-    return "DUDE! Understanding 'why' is SO IMPORTANT! That's the kind of deep thinking we do on IMPAULSIVE all the time! Knowing why helps you level up in EVERY area of life - relationships, business, fitness, ALL OF IT! What specifically are you trying to understand? I've had some CRAZY experiences that taught me a lot, and I'm happy to share what I've learned! Let's GO!";
+    return "Understanding the mechanisms behind health conditions helps create more effective support systems. The 'why' often involves biological processes, environmental factors, and sometimes psychological components. Having this knowledge allows you to implement targeted solutions rather than generic approaches. Could you provide more specific information about what health issue you're trying to understand? With more details, I can provide the practical insights that will help you develop an effective action plan.";
   }
   
   // Generic fallback
-  return "What's up MAVERICK?! I'm here to help you CRUSH IT when it comes to understanding women and relationships! I've been through it ALL - the good, the bad, the CRAZY! Whether it's communication, emotional support, or just being a better partner - I got you, bro! What specific challenge are you facing? Let's turn it into an OPPORTUNITY for growth! FULL SEND!";
+  return "HERØ provides clear, practical advice for men supporting partners with health issues. I focus on actionable steps, efficient solutions, and straightforward explanations. Whether you're dealing with medical appointments, medication management, or day-to-day support, I can offer concrete strategies. What specific health situation are you managing with your partner? The more details you provide, the more tailored my recommendations can be.";
 }
+
