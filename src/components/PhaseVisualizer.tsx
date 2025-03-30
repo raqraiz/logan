@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, Calendar, MoveRight, Droplet, Cloud, Sun, Zap, ChevronDown, ChevronUp, Info } from 'lucide-react';
@@ -155,6 +154,14 @@ const PhaseVisualizer: React.FC = () => {
     }
   };
 
+  const getPhaseConfig = (phaseName: string) => {
+    if (phaseName.toLowerCase().includes('red')) return CYCLE_PHASES.menstruation;
+    if (phaseName.toLowerCase().includes('recovery')) return CYCLE_PHASES.follicular;
+    if (phaseName.toLowerCase().includes('green')) return CYCLE_PHASES.ovulation;
+    if (phaseName.toLowerCase().includes('yellow')) return CYCLE_PHASES.luteal;
+    return CYCLE_PHASES.menstruation; // Default fallback
+  };
+
   const phaseDetails = getCurrentPhaseDetails();
   const PhaseIcon = phaseDetails.icon;
 
@@ -246,7 +253,7 @@ const PhaseVisualizer: React.FC = () => {
             <p className="text-sm text-gray-600">{phaseDetails.description}</p>
             <button 
               onClick={() => togglePhaseExpansion(phaseDetails.name)}
-              className={`mt-1 text-xs flex items-center ${phaseDetails.textColor}`}
+              className={`mt-1 text-xs flex items-center justify-end ${phaseDetails.textColor}`}
             >
               {expandedPhase === phaseDetails.name ? 'Show less' : 'Show more'}
               {expandedPhase === phaseDetails.name ? 
@@ -264,16 +271,12 @@ const PhaseVisualizer: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className={`mt-3 p-4 rounded-lg border ${CYCLE_PHASES[expandedPhase.toLowerCase().includes('red') ? 'menstruation' : 
-              expandedPhase.toLowerCase().includes('recovery') ? 'follicular' : 
-              expandedPhase.toLowerCase().includes('green') ? 'ovulation' : 'luteal'].borderColor} bg-white`}
+            className={`mt-3 p-4 rounded-lg border ${getPhaseConfig(expandedPhase).borderColor} bg-white`}
           >
             <h4 className="font-bold mb-2">{expandedPhase}</h4>
             
             <p className="text-sm mb-3">
-              {CYCLE_PHASES[expandedPhase.toLowerCase().includes('red') ? 'menstruation' : 
-                expandedPhase.toLowerCase().includes('recovery') ? 'follicular' : 
-                expandedPhase.toLowerCase().includes('green') ? 'ovulation' : 'luteal'].detailedDescription}
+              {getPhaseConfig(expandedPhase).detailedDescription}
             </p>
 
             <Accordion type="single" collapsible className="w-full">
@@ -283,9 +286,7 @@ const PhaseVisualizer: React.FC = () => {
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className="list-disc pl-5 text-sm space-y-1">
-                    {CYCLE_PHASES[expandedPhase.toLowerCase().includes('red') ? 'menstruation' : 
-                      expandedPhase.toLowerCase().includes('recovery') ? 'follicular' : 
-                      expandedPhase.toLowerCase().includes('green') ? 'ovulation' : 'luteal'].doList.map((item, index) => (
+                    {getPhaseConfig(expandedPhase).doList.map((item, index) => (
                       <li key={`do-${index}`} className="text-gray-700">{item}</li>
                     ))}
                   </ul>
@@ -298,9 +299,7 @@ const PhaseVisualizer: React.FC = () => {
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className="list-disc pl-5 text-sm space-y-1">
-                    {CYCLE_PHASES[expandedPhase.toLowerCase().includes('red') ? 'menstruation' : 
-                      expandedPhase.toLowerCase().includes('recovery') ? 'follicular' : 
-                      expandedPhase.toLowerCase().includes('green') ? 'ovulation' : 'luteal'].dontList.map((item, index) => (
+                    {getPhaseConfig(expandedPhase).dontList.map((item, index) => (
                       <li key={`dont-${index}`} className="text-gray-700">{item}</li>
                     ))}
                   </ul>
@@ -318,9 +317,7 @@ const PhaseVisualizer: React.FC = () => {
               <HoverCardContent className="w-80">
                 <div className="text-sm">
                   <p className="font-semibold mb-1">
-                    {CYCLE_PHASES[expandedPhase.toLowerCase().includes('red') ? 'menstruation' : 
-                      expandedPhase.toLowerCase().includes('recovery') ? 'follicular' : 
-                      expandedPhase.toLowerCase().includes('green') ? 'ovulation' : 'luteal'].medicalName}
+                    {getPhaseConfig(expandedPhase).medicalName}
                   </p>
                   <p className="text-xs text-gray-600">
                     {expandedPhase.toLowerCase().includes('red') ? 
