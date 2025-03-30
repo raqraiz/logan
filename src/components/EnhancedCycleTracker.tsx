@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { format, addDays, differenceInDays } from 'date-fns';
 import { Calendar as CalendarIcon, Bell, Save, Info } from 'lucide-react';
@@ -28,6 +27,7 @@ import {
 
 interface CycleData {
   lastPeriodStart: Date | undefined;
+  lastPeriodEnd: Date | undefined;
   cycleLength: number;
   periodLength: number;
   notifications: boolean;
@@ -62,12 +62,14 @@ const EnhancedCycleTracker: React.FC = () => {
       const parsed = JSON.parse(savedData);
       return {
         ...parsed,
-        lastPeriodStart: parsed.lastPeriodStart ? new Date(parsed.lastPeriodStart) : undefined
+        lastPeriodStart: parsed.lastPeriodStart ? new Date(parsed.lastPeriodStart) : undefined,
+        lastPeriodEnd: parsed.lastPeriodEnd ? new Date(parsed.lastPeriodEnd) : undefined
       };
     }
     
     return {
       lastPeriodStart: undefined,
+      lastPeriodEnd: undefined,
       cycleLength: DEFAULT_CYCLE_LENGTH,
       periodLength: DEFAULT_PERIOD_LENGTH,
       notifications: false,
@@ -86,12 +88,34 @@ const EnhancedCycleTracker: React.FC = () => {
     // Save data to localStorage whenever cycleData changes
     localStorage.setItem('cycleTrackerData', JSON.stringify({
       ...cycleData,
-      lastPeriodStart: cycleData.lastPeriodStart?.toISOString()
+      lastPeriodStart: cycleData.lastPeriodStart?.toISOString(),
+      lastPeriodEnd: cycleData.lastPeriodEnd?.toISOString()
     }));
   }, [cycleData]);
 
+  useEffect(() => {
+    // Auto-calculate lastPeriodEnd based on lastPeriodStart and periodLength if not set
+    if (cycleData.lastPeriodStart && !cycleData.lastPeriodEnd) {
+      const calculatedEndDate = new Date(cycleData.lastPeriodStart);
+      calculatedEndDate.setDate(calculatedEndDate.getDate() + cycleData.periodLength - 1);
+      setCycleData(prev => ({ ...prev, lastPeriodEnd: calculatedEndDate }));
+    }
+  }, [cycleData.lastPeriodStart, cycleData.periodLength]);
+
   const handlePeriodStartChange = (date: Date | undefined) => {
     setCycleData(prev => ({ ...prev, lastPeriodStart: date }));
+  };
+
+  const handlePeriodEndChange = (date: Date | undefined) => {
+    setCycleData(prev => ({ ...prev, lastPeriodEnd: date }));
+    
+    // Update period length if both start and end are defined
+    if (cycleData.lastPeriodStart && date) {
+      const newPeriodLength = differenceInDays(date, cycleData.lastPeriodStart) + 1;
+      if (newPeriodLength > 0) {
+        setCycleData(prev => ({ ...prev, periodLength: newPeriodLength }));
+      }
+    }
   };
 
   const handleCycleLengthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,6 +129,13 @@ const EnhancedCycleTracker: React.FC = () => {
     const value = parseInt(e.target.value);
     if (value > 0 && value <= 14) {
       setCycleData(prev => ({ ...prev, periodLength: value }));
+      
+      // Update end date if start date is set
+      if (cycleData.lastPeriodStart) {
+        const newEndDate = new Date(cycleData.lastPeriodStart);
+        newEndDate.setDate(newEndDate.getDate() + value - 1);
+        setCycleData(prev => ({ ...prev, lastPeriodEnd: newEndDate }));
+      }
     }
   };
 
@@ -196,7 +227,8 @@ const EnhancedCycleTracker: React.FC = () => {
   const saveTrackerData = () => {
     localStorage.setItem('cycleTrackerData', JSON.stringify({
       ...cycleData,
-      lastPeriodStart: cycleData.lastPeriodStart?.toISOString()
+      lastPeriodStart: cycleData.lastPeriodStart?.toISOString(),
+      lastPeriodEnd: cycleData.lastPeriodEnd?.toISOString()
     }));
     
     toast({
@@ -217,7 +249,7 @@ const EnhancedCycleTracker: React.FC = () => {
         
         <TabsContent value="tracker" className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="last-period">Last period start date</Label>
+            <Label htmlFor="last-period-start">Last period start date</Label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -240,6 +272,37 @@ const EnhancedCycleTracker: React.FC = () => {
                   mode="single"
                   selected={cycleData.lastPeriodStart}
                   onSelect={handlePeriodStartChange}
+                  initialFocus
+                  className="p-3 pointer-events-auto"
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="last-period-end">Last period end date</Label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "w-full justify-start text-left font-normal",
+                    !cycleData.lastPeriodEnd && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {cycleData.lastPeriodEnd ? (
+                    format(cycleData.lastPeriodEnd, "PPP")
+                  ) : (
+                    <span>Pick a date</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={cycleData.lastPeriodEnd}
+                  onSelect={handlePeriodEndChange}
                   initialFocus
                   className="p-3 pointer-events-auto"
                 />
