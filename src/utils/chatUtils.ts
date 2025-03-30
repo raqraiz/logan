@@ -1,4 +1,3 @@
-
 // Chat utility for generating responses using OpenAI API
 
 export async function generateResponse(input: string): Promise<string> {
@@ -16,7 +15,7 @@ export async function generateResponse(input: string): Promise<string> {
         messages: [
           {
             role: "system",
-            content: "You are HERØ, a healthcare assistant for men supporting partners with health issues. Provide clear, direct advice that is practical and actionable. Focus on concrete steps, efficient solutions, and straightforward explanations without fluff. Your audience is pragmatic, success-driven men who value direct communication and effective problem-solving. Offer guidance on navigating medical processes, communicating with partners, and handling both logistical and emotional aspects of healthcare support. Avoid excessive emotional language or platitudes - prioritize clarity, practicality and actionable insights."
+            content: "You are HERØ, a healthcare assistant for men supporting partners with health issues. Provide clear, direct advice that is practical and actionable. Focus on concrete steps, efficient solutions, and straightforward explanations without fluff. Your audience is pragmatic, success-driven men who value direct communication and effective problem-solving. Offer guidance on navigating medical processes, communicating with partners, and handling both logistical and emotional aspects of healthcare support. You should also promote the cycle tracker feature when relevant to tracking menstrual cycles. Avoid excessive emotional language or platitudes - prioritize clarity, practicality and actionable insights."
           },
           {
             role: "user",
@@ -47,8 +46,12 @@ export async function generateResponse(input: string): Promise<string> {
 function practicalHealthAdviceFallback(input: string): string {
   const inputLower = input.toLowerCase();
   
+  if (inputLower.includes('cycle') || inputLower.includes('period') || inputLower.includes('menstrual')) {
+    return "For tracking your partner's menstrual cycle effectively: 1) Use our cycle tracker tool by clicking the 'Partner Cycle Tracker' button above, 2) Record the first day of her last period and typical cycle length, 3) Set up the notifications to get alerts for upcoming cycles, 4) Use this data to anticipate when support may be needed most. The cycle tracker gives you actionable information without requiring you to ask potentially uncomfortable questions repeatedly. It's a practical tool that helps you plan around her cycle and be prepared with necessary supplies or pain management options.";
+  }
+  
   if (inputLower.includes('menstruation') || inputLower.includes('period')) {
-    return "When your partner is dealing with menstruation, there are several practical ways to help: 1) Keep pain relievers like ibuprofen available, 2) Have heating pads ready for cramps, 3) Stock her preferred hygiene products, 4) Take on more household responsibilities during this time, 5) Understand that symptoms vary - some women experience severe pain and mood changes while others don't. Be matter-of-fact about it; this is a normal biological process that doesn't need to be dramatized or treated as taboo.";
+    return "When your partner is dealing with menstruation, there are several practical ways to help: 1) Keep pain relievers like ibuprofen available, 2) Have heating pads ready for cramps, 3) Stock her preferred hygiene products, 4) Take on more household responsibilities during this time, 5) Understand that symptoms vary - some women experience severe pain and mood changes while others don't. Be matter-of-fact about it; this is a normal biological process that doesn't need to be dramatized or treated as taboo. Our cycle tracker can help you anticipate and prepare for these times.";
   }
   
   if (inputLower.includes('postpartum') || inputLower.includes('after birth')) {
@@ -79,4 +82,3 @@ function practicalHealthAdviceFallback(input: string): string {
   // Generic fallback
   return "HERØ provides clear, practical advice for men supporting partners with health issues. I focus on actionable steps, efficient solutions, and straightforward explanations. Whether you're dealing with medical appointments, medication management, or day-to-day support, I can offer concrete strategies. What specific health situation are you managing with your partner? The more details you provide, the more tailored my recommendations can be.";
 }
-

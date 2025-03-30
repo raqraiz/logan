@@ -1,9 +1,15 @@
 
 import { motion } from 'framer-motion';
+import { Calendar } from 'lucide-react';
+import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import ChatInterface from '@/components/ChatInterface';
+import CycleTrackerModal from '@/components/CycleTrackerModal';
+import { Button } from '@/components/ui/button';
 
 const Chat = () => {
+  const [isCycleTrackerOpen, setIsCycleTrackerOpen] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col page-transition">
       <Navbar />
@@ -14,22 +20,35 @@ const Chat = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-8"
+            className="text-center mb-4"
           >
             <h1 className="text-3xl font-bold mb-2">HERØ Chat</h1>
-            <p className="text-foreground/70">
+            <p className="text-foreground/70 mb-4">
               Get practical, actionable advice for supporting your partner's health needs effectively.
             </p>
+            <Button 
+              variant="outline" 
+              onClick={() => setIsCycleTrackerOpen(true)}
+              className="mx-auto"
+            >
+              <Calendar className="mr-2 h-4 w-4" />
+              Partner Cycle Tracker
+            </Button>
           </motion.div>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="glass-card rounded-2xl overflow-hidden h-[calc(100vh-220px)] border-hero-light/10"
+            className="glass-card rounded-2xl overflow-hidden h-[calc(100vh-260px)] border-hero-light/10"
           >
             <ChatInterface />
           </motion.div>
+          
+          <CycleTrackerModal 
+            isOpen={isCycleTrackerOpen} 
+            onClose={() => setIsCycleTrackerOpen(false)} 
+          />
         </div>
       </main>
     </div>
@@ -37,4 +56,3 @@ const Chat = () => {
 };
 
 export default Chat;
-

@@ -14,7 +14,7 @@ export const SUGGESTION_TOPICS = [
   "Managing medical appointments efficiently",
   "Communication strategies during health crises",
   "Creating effective medication routines",
+  "Tracking partner's menstrual cycle",
   "Balancing support with independence",
   "Navigating the healthcare system effectively"
 ];
-
