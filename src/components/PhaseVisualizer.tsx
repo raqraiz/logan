@@ -1,8 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Clock, Calendar, MoveRight, Droplet, Cloud, Sun, Zap } from 'lucide-react';
+import { Clock, Calendar, MoveRight, Droplet, Cloud, Sun, Zap, ChevronDown, ChevronUp, Info } from 'lucide-react';
 import { differenceInDays } from 'date-fns';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const CYCLE_PHASES = {
   menstruation: {
@@ -10,40 +13,56 @@ const CYCLE_PHASES = {
     medicalName: "Menstrual Phase",
     days: "Days 1-5",
     description: "Extra support needed",
+    detailedDescription: "During this phase, hormone levels are generally low. She may experience cramping, fatigue, and mood changes. This is when comfort, understanding, and patience are most appreciated. Consider bringing her favorite snacks, a heating pad, or offering a back massage. Small gestures go a long way during the Red Zone.",
     color: "bg-red-100",
     borderColor: "border-red-300",
     textColor: "text-red-700",
-    icon: Droplet
+    hoverColor: "hover:bg-red-200",
+    icon: Droplet,
+    doList: ["Offer comfort foods", "Be extra patient", "Provide a heating pad", "Listen more than usual", "Have pain relief ready"],
+    dontList: ["Plan demanding activities", "Dismiss her symptoms", "Comment on mood changes", "Force social events"]
   },
   follicular: {
     name: "Recovery Zone",
     medicalName: "Follicular Phase",
     days: "Days 1-14",
     description: "Energy returning",
+    detailedDescription: "As estrogen rises, her energy and mood typically improve during this phase. She's likely to feel more sociable and adventurous. It's a great time for new activities and moderate exercise. The Recovery Zone is when she starts feeling better and more like herself again.",
     color: "bg-blue-100",
     borderColor: "border-blue-300",
     textColor: "text-blue-700",
-    icon: Cloud
+    hoverColor: "hover:bg-blue-200",
+    icon: Cloud,
+    doList: ["Suggest outdoor activities", "Plan social gatherings", "Support new interests", "Schedule moderate exercise together", "Be ready for her increasing energy"],
+    dontList: ["Expect immediate full energy", "Ignore lingering symptoms", "Push too hard too quickly"]
   },
   ovulation: {
     name: "Green Zone",
     medicalName: "Ovulatory Phase",
     days: "Days 14-16",
     description: "Peak energy & mood",
+    detailedDescription: "This is when she's typically feeling her absolute best with peak hormone levels. Energy, confidence, and mood are usually at their highest during these few days. It's the perfect time for date nights, social events, and trying new things together. Make the most of the Green Zone!",
     color: "bg-green-100",
     borderColor: "border-green-300",
     textColor: "text-green-700",
-    icon: Sun
+    hoverColor: "hover:bg-green-200",
+    icon: Sun,
+    doList: ["Plan date nights", "Schedule important events", "Be spontaneous", "Compliment her confidence", "Try new activities together"],
+    dontList: ["Waste this peak energy time", "Ignore her increased sociability", "Stay home when she wants to go out"]
   },
   luteal: {
     name: "Yellow Zone",
     medicalName: "Luteal Phase",
     days: "Days 15-28",
     description: "PMS alert",
+    detailedDescription: "As hormones begin to decrease, PMS symptoms may appear. During the Yellow Zone, she might experience increased sensitivity, food cravings, fatigue, and mood changes. This is when extra understanding and support become important again as her body prepares for the next cycle.",
     color: "bg-yellow-100",
     borderColor: "border-yellow-300",
     textColor: "text-yellow-700",
-    icon: Zap
+    hoverColor: "hover:bg-yellow-200",
+    icon: Zap,
+    doList: ["Give extra reassurance", "Anticipate mood fluctuations", "Have her favorite comfort foods ready", "Create a calm environment", "Be understanding about changing plans"],
+    dontList: ["Take mood changes personally", "Plan stressful events", "Point out PMS symptoms", "Make jokes about hormones", "Push for decisions"]
   }
 };
 
@@ -52,6 +71,7 @@ const PhaseVisualizer: React.FC = () => {
   const [cycleDay, setCycleDay] = useState<number | null>(null);
   const [hasData, setHasData] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
+  const [expandedPhase, setExpandedPhase] = useState<string | null>(null);
 
   useEffect(() => {
     const loadCycleData = () => {
@@ -127,6 +147,14 @@ const PhaseVisualizer: React.FC = () => {
     }
   };
 
+  const togglePhaseExpansion = (phaseName: string) => {
+    if (expandedPhase === phaseName) {
+      setExpandedPhase(null);
+    } else {
+      setExpandedPhase(phaseName);
+    }
+  };
+
   const phaseDetails = getCurrentPhaseDetails();
   const PhaseIcon = phaseDetails.icon;
 
@@ -154,18 +182,24 @@ const PhaseVisualizer: React.FC = () => {
       <div className="relative mt-6">
         {/* Phase timeline */}
         <div className="flex justify-between mb-2">
-          {Object.values(CYCLE_PHASES).map((phase, index) => (
-            <div 
+          {Object.entries(CYCLE_PHASES).map(([key, phase]) => (
+            <button 
               key={phase.name} 
-              className={`text-center flex-1 px-1 ${
+              onClick={() => togglePhaseExpansion(phase.name)}
+              className={`text-center flex-1 px-1 transition-colors ${
                 currentPhase === phase.name ? phase.textColor : 'text-gray-500'
-              }`}
+              } ${phase.hoverColor} rounded-md py-1 cursor-pointer`}
             >
               <phase.icon className={`h-5 w-5 mx-auto ${
                 currentPhase === phase.name ? 'animate-pulse' : ''
               }`} />
               <p className="text-xs font-medium mt-1">{phase.name}</p>
-            </div>
+              {expandedPhase === phase.name ? (
+                <ChevronUp className="h-3 w-3 mx-auto mt-1" />
+              ) : (
+                <ChevronDown className="h-3 w-3 mx-auto mt-1" />
+              )}
+            </button>
           ))}
         </div>
         
@@ -210,8 +244,99 @@ const PhaseVisualizer: React.FC = () => {
               </div>
             )}
             <p className="text-sm text-gray-600">{phaseDetails.description}</p>
+            <button 
+              onClick={() => togglePhaseExpansion(phaseDetails.name)}
+              className={`mt-1 text-xs flex items-center ${phaseDetails.textColor}`}
+            >
+              {expandedPhase === phaseDetails.name ? 'Show less' : 'Show more'}
+              {expandedPhase === phaseDetails.name ? 
+                <ChevronUp className="h-3 w-3 ml-1" /> : 
+                <ChevronDown className="h-3 w-3 ml-1" />
+              }
+            </button>
           </div>
         </motion.div>
+
+        {/* Expanded phase information */}
+        {expandedPhase && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className={`mt-3 p-4 rounded-lg border ${CYCLE_PHASES[expandedPhase.toLowerCase().includes('red') ? 'menstruation' : 
+              expandedPhase.toLowerCase().includes('recovery') ? 'follicular' : 
+              expandedPhase.toLowerCase().includes('green') ? 'ovulation' : 'luteal'].borderColor} bg-white`}
+          >
+            <h4 className="font-bold mb-2">{expandedPhase}</h4>
+            
+            <p className="text-sm mb-3">
+              {CYCLE_PHASES[expandedPhase.toLowerCase().includes('red') ? 'menstruation' : 
+                expandedPhase.toLowerCase().includes('recovery') ? 'follicular' : 
+                expandedPhase.toLowerCase().includes('green') ? 'ovulation' : 'luteal'].detailedDescription}
+            </p>
+
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="do" className="border-b-0">
+                <AccordionTrigger className="py-2 text-sm font-medium">
+                  Hero Actions (What to do)
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc pl-5 text-sm space-y-1">
+                    {CYCLE_PHASES[expandedPhase.toLowerCase().includes('red') ? 'menstruation' : 
+                      expandedPhase.toLowerCase().includes('recovery') ? 'follicular' : 
+                      expandedPhase.toLowerCase().includes('green') ? 'ovulation' : 'luteal'].doList.map((item, index) => (
+                      <li key={`do-${index}`} className="text-gray-700">{item}</li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="dont">
+                <AccordionTrigger className="py-2 text-sm font-medium">
+                  Caution Zone (What to avoid)
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ul className="list-disc pl-5 text-sm space-y-1">
+                    {CYCLE_PHASES[expandedPhase.toLowerCase().includes('red') ? 'menstruation' : 
+                      expandedPhase.toLowerCase().includes('recovery') ? 'follicular' : 
+                      expandedPhase.toLowerCase().includes('green') ? 'ovulation' : 'luteal'].dontList.map((item, index) => (
+                      <li key={`dont-${index}`} className="text-gray-700">{item}</li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <button className="text-xs flex items-center text-gray-500 mt-2">
+                  <Info className="h-3 w-3 mr-1" />
+                  Medical perspective
+                </button>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                <div className="text-sm">
+                  <p className="font-semibold mb-1">
+                    {CYCLE_PHASES[expandedPhase.toLowerCase().includes('red') ? 'menstruation' : 
+                      expandedPhase.toLowerCase().includes('recovery') ? 'follicular' : 
+                      expandedPhase.toLowerCase().includes('green') ? 'ovulation' : 'luteal'].medicalName}
+                  </p>
+                  <p className="text-xs text-gray-600">
+                    {expandedPhase.toLowerCase().includes('red') ? 
+                      "The shedding of the uterine lining. Estrogen and progesterone levels are at their lowest." : 
+                    expandedPhase.toLowerCase().includes('recovery') ? 
+                      "Rising estrogen levels stimulate the growth of the uterine lining. General well-being improves." : 
+                    expandedPhase.toLowerCase().includes('green') ? 
+                      "A mature egg is released. Estrogen peaks and then drops, while progesterone rises. Energy and mood are typically at their highest." : 
+                      "The egg travels down the fallopian tube. If not fertilized, hormone levels drop in preparation for menstruation."
+                    }
+                  </p>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+          </motion.div>
+        )}
         
         {/* Next phase indicator */}
         {currentPhase !== "Unknown" && (
