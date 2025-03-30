@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Dumbbell, Calendar, Share2 } from 'lucide-react';
+import { Dumbbell, Calendar } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -54,13 +54,6 @@ const Navbar = () => {
           >
             <Calendar className="w-4 h-4 mr-1 inline-block" />
             Cycle Tracker
-          </Link>
-          <Link 
-            to="/shareable-content" 
-            className={`nav-link ${location.pathname === '/shareable-content' ? 'active' : ''}`}
-          >
-            <Share2 className="w-4 h-4 mr-1 inline-block" />
-            Shareable
           </Link>
           <Link 
             to="/resources" 
