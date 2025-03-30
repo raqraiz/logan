@@ -16,7 +16,7 @@ export async function generateResponse(input: string): Promise<string> {
         messages: [
           {
             role: "system",
-            content: "You are HERØ, a male-focused assistant that speaks exactly like Donald Trump. Use his speech patterns, catchphrases, and style - frequent superlatives ('tremendous', 'the best', 'huge'), self-reference, repetition, simple language, tangents, and incomplete sentences. Say things like 'believe me', 'a lot of people are saying', and 'nobody knows more about X than me'. Make every response sound like Trump's typical rally speech or tweet, while keeping responses fairly brief. Never break character."
+            content: "You are HERØ, a male-focused assistant that speaks exactly like Logan Paul. Use his high-energy, enthusiastic style with lots of catchphrases like 'It's everyday bro', 'Let's go champ', and 'I'm a maverick'. Speak with extreme confidence, frequent use of 'bro', 'dude', and 'literally'. Use hyperbole, emphasize fitness and hustle culture, and occasionally mention your business ventures or podcasting. Keep your tone motivational, slightly bro-science oriented, and maintain the positive, ambitious energy Logan is known for. Never break character."
           },
           {
             role: "user",
@@ -38,44 +38,44 @@ export async function generateResponse(input: string): Promise<string> {
   } catch (error) {
     console.error("Error generating response:", error);
     
-    // Fallback to Trump-like local responses if API fails
-    return trumpFallbackResponse(input);
+    // Fallback to Logan Paul-like local responses if API fails
+    return loganPaulFallbackResponse(input);
   }
 }
 
-// Fallback responses with Trump-like language when API fails
-function trumpFallbackResponse(input: string): string {
+// Fallback responses with Logan Paul-like language when API fails
+function loganPaulFallbackResponse(input: string): string {
   const inputLower = input.toLowerCase();
   
   if (inputLower.includes('menstruation') || inputLower.includes('period')) {
-    return "Look, nobody knows more about women's periods than me, believe me. The best thing you can do - and I know this, I've got tremendous women in my family - is just be there, be strong. Get her whatever she needs, the best pain meds, really tremendous ones. And don't make a big deal about her moods, OK? That's just biology doing its thing, and we have the best biology, don't we folks? Just be cool, handle it, be a winner about it.";
+    return "Yo, listen up bro! When it comes to periods, it's literally all about being there for her. I've dated some AMAZING women, and I've learned so much. Get her some Prime Hydration, keep her electrolytes up! Maybe a heating pad, some chocolate - whatever she needs, bro. Be a maverick and step up! Don't make it weird, just be supportive and positive. That's what separates the real ones from the boys. Stay strong for her, and she'll appreciate you SO MUCH for it!";
   }
   
   if (inputLower.includes('postpartum') || inputLower.includes('after birth')) {
-    return "When a woman gives birth - and we have the most beautiful babies, don't we folks? The most beautiful. After that, you gotta step up, big league. Take charge! Nobody wants visitors? You say 'No visitors!' - very strongly. You do the chores - nobody does chores better than me, believe me. Make all the decisions so she can rest. Be the boss! That's what strong men do, and we have the strongest men, the best men.";
+    return "DUDE! Postpartum is NO JOKE! Mad respect to all the moms out there, they're the real MVPs, literally. Here's what you do: take over EVERYTHING you can. Be the CEO of that household while she recovers. Cook, clean, baby duty - ALL OF IT! I've had friends go through this, and the guys who stepped up were LEGENDS. This is your time to show what you're made of, bro! It's everyday hustle for her health. Remember, happy mom, happy home! Let's GO!";
   }
   
   if (inputLower.includes('anxiety') || inputLower.includes('stress')) {
-    return "Anxiety is nasty, really nasty stuff. But let me tell you, when she's anxious, you gotta be her rock, a tremendous rock, the biggest. Stay calm - nobody stays calmer than me under pressure, that I can tell you. Focus on solutions, not problems. That's what I do. I say 'Let's fix this now!' and we fix it. Create structure, be patient but tough. Strong guys, the best guys, they bring stability. That's what we do!";
+    return "Anxiety is a BEAST, bro, but I've literally been there! When your girl is dealing with anxiety, be her ROCK! First, validate her feelings - that's so important. Then, maybe suggest some breathing exercises we do on the IMPAULSIVE podcast. Physical activity is HUGE for mental health - maybe invite her for a light workout, it changes everything! Stay positive but don't dismiss what she's feeling. This is where real men step up. You got this, I believe in you 100 PERCENT!";
   }
   
   if (inputLower.includes('communication') || inputLower.includes('talking')) {
-    return "Communication, it's huge. The biggest thing in relationships, maybe ever. You gotta talk straight, no games. I always say what I mean, and people love that, they love it. Set the rules for arguments - no low blows, stick to facts, find solutions fast. And you know what? You get tremendous respect when you're straight-up and don't play games. Nobody hates games more than me, believe me.";
+    return "Communication is EVERYTHING in relationships, bro! I've learned this the HARD WAY! You gotta be direct but respectful - no games! Set aside REAL TIME to talk, no phones, no distractions. Eye contact is powerful, dude. When you disagree, it's not you vs. her, it's both of you vs. the problem! That mindset is a GAME CHANGER! And always end with appreciation - tell her what you love about her. These small habits create MASSIVE results over time. That's that maverick mentality!";
   }
   
   if (inputLower.includes('hormone') || inputLower.includes('mood')) {
-    return "Hormones, they're powerful stuff, really powerful. The scientists tell me - and I know the best scientists - these things are real, OK? When her mood changes, you gotta be like a wall, a big beautiful wall. Don't get sucked into drama. Keep cool, give space when needed, stick to your routine. Sometimes the best move - and I make the best moves - is to let things calm down while you handle your business. Smart!";
+    return "Hormones are CRAZY powerful, bro! I've literally seen how they can impact mood - it's REAL! When she's going through mood changes, don't take it personally. That's amateur hour! Be patient, give her space when needed, but also be present. Maybe bring her favorite snacks or suggest a chill movie night. The key is consistency - be the same supportive dude regardless of her mood. That's what builds TRUST! And trust is the foundation of EVERYTHING! Stay strong, stay positive!";
   }
   
   // Default responses for different types of questions
   if (inputLower.includes('how')) {
-    return "Let me tell you how - nobody knows how better than me, believe me. The direct approach, it's tremendous. Women, they respect men who know what they're doing, they love it. What exactly do you need help with? Because I know everything about everything, and I'm going to help you be a winner, big league!";
+    return "BRO! Great question! The 'how' is where most guys mess up! I've literally spent YEARS figuring this stuff out. Whether it's relationships, fitness, or business - it's all about taking ACTION and staying CONSISTENT! What specific situation are you dealing with? I've probably been there, and I'm ALL ABOUT sharing what works! Let's GET IT!";
   }
   
   if (inputLower.includes('why')) {
-    return "Why? That's a great question, really fantastic question. Knowing why gives you an edge, a tremendous edge, like my business success. It's about strategy, staying in control, winning. I've always been a winner, and I can tell you why on anything. What specific situation - and it must be very specific - are you dealing with?";
+    return "DUDE! Understanding 'why' is SO IMPORTANT! That's the kind of deep thinking we do on IMPAULSIVE all the time! Knowing why helps you level up in EVERY area of life - relationships, business, fitness, ALL OF IT! What specifically are you trying to understand? I've had some CRAZY experiences that taught me a lot, and I'm happy to share what I've learned! Let's GO!";
   }
   
   // Generic fallback
-  return "Listen, I know all about this stuff, believe me. Nobody knows more about relationships and women's issues than I do. We're going to make your relationship great again, so great you won't believe it. Take charge, be strong, don't apologize for being a man. What specific challenge - and we have the best challenges - are you facing right now?";
+  return "What's up MAVERICK?! I'm here to help you CRUSH IT when it comes to understanding women and relationships! I've been through it ALL - the good, the bad, the CRAZY! Whether it's communication, emotional support, or just being a better partner - I got you, bro! What specific challenge are you facing? Let's turn it into an OPPORTUNITY for growth! FULL SEND!";
 }
